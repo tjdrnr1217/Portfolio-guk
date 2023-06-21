@@ -58,7 +58,7 @@
 </div>
 
 # :family: <a name="team">팀원소개</a>
-<img src="https://raw.githubusercontent.com/ldj8196/Portfolio/main/src/main/resources/static/SG/image/팀원소개.png"> <br/><br/>
+<img src="https://github.com/tjdrnr1217/Portfolio-guk/blob/main/src/main/resources/static/SG/image/%ED%8C%80%EC%9B%90%EC%86%8C%EA%B0%9C.png?raw=true"> <br/><br/>
 # :bookmark_tabs: <a name="function">기능구현</a>
 **1. 이메일 인증**
 <img src="https://raw.githubusercontent.com/ldj8196/Portfolio/main/src/main/resources/static/DJ/portfolioimage/이메일인증.gif"> <br/><br/>
