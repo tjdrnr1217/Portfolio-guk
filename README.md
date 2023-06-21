@@ -60,26 +60,26 @@
 # :family: <a name="team">팀원소개</a>
 <img src="https://github.com/tjdrnr1217/Portfolio-guk/blob/main/src/main/resources/static/SG/image/%ED%8C%80%EC%9B%90%EC%86%8C%EA%B0%9C.png?raw=true"> <br/><br/>
 # :bookmark_tabs: <a name="function">기능구현</a>
-**1. 이메일 인증**
+**1. Spring Secuurity 로그인 로그아웃**
 <img src="https://raw.githubusercontent.com/ldj8196/Portfolio/main/src/main/resources/static/DJ/portfolioimage/이메일인증.gif"> <br/><br/>
 - SimpleMailMessage 클래스를 이용하여 메일 내용 설정
 - JavaMailSender를 이용하여 Gmail로 고객에게 인증번호 전송
 - 전송된 인증번호를 입력하여 인증확인
 <br/>
 
-**2. 사업자등록번호 확인**
+**2. 운행정보관리(추가,일괄수정)**
 <img src="https://raw.githubusercontent.com/ldj8196/Portfolio/main/src/main/resources/static/DJ/portfolioimage/사업자등록번호.gif"> <br/><br/>
 - 공공데이터포럼에서 사업자등록번호 API를 통해 데이터를 받는다.
 - 받은 값(b_stt_cd)을 이용하여 유효성 검사 실시(01:유효한 사업자등록번호)
 <br/>
 
-**3. 주문목록확인**
+**3. 차량 선박 배정**
 <img src="https://raw.githubusercontent.com/ldj8196/Portfolio/main/src/main/resources/static/DJ/portfolioimage/주문상세목록.png"> <br/><br/>
 - RESTful 웹 서비스를 구축하여 RestController로 주문상세목록 객체를 JSON으로 데이터 전송
 - 버튼 클릭시 Modal에서 주문 상세 목록 출력
 <br/>
 
-**4. 결제**
+**4. 주문목록조회**
 <img src="https://raw.githubusercontent.com/ldj8196/Portfolio/main/src/main/resources/static/DJ/portfolioimage/결제.gif"> <br/><br/>
 - 아임 포트(Iamport)를 이용한 무료로 서비스되는 결제 연동API 사용
 - 각 종 PG를 이용하여 결제 후 완료시 상품 State 결제완료로 변경 후 
