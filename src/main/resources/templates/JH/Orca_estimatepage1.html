@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>OrcaEstimate</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <!-- 아이콘 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <link rel='stylesheet' type='text/css' media='screen' th:href='@{/JH/css/estimatepage1.css}'>
+     <!-- jquery cdn -->
+     <script src="https://code.jquery.com/jquery-3.6.4.js" ></script>
+    </head>
+    <div class="topimg">
+        <header class="he">
+            <div class="cnt">
+                    <a th:href="@{/orca/home.do}"><h3>Orca</h3></a>
+                    <nav>
+                       <ul id="topMenu">
+                            <li><a th:href="@{/orca/history.do}">회사소개</a>
+                                <ul> <!-- 순서없는 리스트 -->
+                                    <li><a th:href="@{/orca/history.do}">연혁</a></li> <!-- li = º 이모양 -->
+                                    <li><a th:href="@{/orca/organization.do}">조직도</a></li>
+                                    <li><a th:href="@{/orca/ci.do}">CI</a></li>
+                                    <li><a th:href="@{/orca/introduce.do}">인사말</a></li>
+                                </ul>
+                            </li>
+                            <li><a th:href="@{/orca/location.do}">해운정보</a>
+                                <ul>
+                                    <li><a th:href="@{/orca/location.do}">배송</a></li>
+                                    <li><a th:href="@{/orca/company/estimatepage.do}">주문</a></li>
+                                    <li><a th:href="@{/orca/company/cargoorderlist.do}">조회</a></li>
+                                </ul>
+                            </li>
+                            <li><a th:href="@{/orca/operation.do}">사업분야</a>
+                                <ul>
+                                    <li><a th:href="@{/orca/operation.do}">항만운영</a></li>
+                                    <li><a th:href="@{/orca/operationequip.do}">항만운영장비</a></li>
+                                    <li><a th:href="@{/orca/harborloading.do}">항만하역</a></li>
+                                    <li><a th:href="@{/orca/portauxiliarybusiness.do}">항만부대사업</a></li>
+                                </ul>
+                            </li>
+                            <li><a th:href="@{/orca/schedulelist.do}">운행정보</a></li>
+                        </ul>               
+                    </nav>
+        
+                   
+                    <aside class="top_menu">
+                        <div th:if="${user == null}" class="a">
+                            <ul class="btns">
+                                <a href="#" id="search"><i class="fa-solid fa-magnifying-glass fa-lg"></i></a>
+                                <li class="login"><a th:href="@{/orca/login.do}">LOGIN</a></li>
+                                <li class="join"><a th:href="@{/orca/join.do}">JOIN</a></li>
+                                <li class="mypage"><a th:href="@{/orca/company/mypage.do}">MYPAGE</a></li>
+                            </ul>
+                            </div>
+            
+                            <div th:if="${user != null}">
+                                <ul class="btns">
+                                    <li th:text="${user.username}" class="username"></li>
+                                    <li class="mypage"><a th:href="@{/orca/company/mypage.do}">MYPAGE</a></li>
+                                    <form th:action="@{/logout.do}" method="post">
+                                        <li class="logout"><input type="submit" value="LOGOUT" class="logout2" /></li>
+                                    </form>
+                                </ul>
+                            </div>
+                        </ul>
+                    </aside>
+            </div>
+        </header>
+        <div class="slogan">
+            <h2>INFORMATION</h2>
+            <p>안전배송, 간편주문, 신속조회, 언제나 오르카가 함께합니다.</p>
+        
+        </div>
+        </div>
+        <div class="submenu">
+            <div class="container">
+                <ul>
+                    <li>
+                        <a th:href="@{/orca/location.do}">배송</a>
+						<a th:href="@{/orca/company/estimatepage.do}">주문</a>
+						<a th:href="@{/orca/company/cargoorderlist.do}">조회</a>
+                    </li>
+                </ul>
+        
+            </div>
+        
+        </div>
+    </header>
+    <body>
+        <div>
+            <div class="my-page">
+               <form action="estimatepage2.do" method="get" id="form">
+                   <div class="my-header">
+                       <div class="my-tex">
+                           <span>화물 및 배송정보 입력</span>
+                           <hr>
+                       </div>
+                   </div>
+                   <div class="jcnt">
+                   
+                       <div class="joincnt">
+                           <div class="join_row1">
+                           <label for="cargoweight" >화물무게(ton)</label>
+                           <input type="number" id="cargoweight" name="cargoweight" placeholder=" ton단위 입력"/>
+                       </div>
+                           
+                         <div class="join_row1">
+                              <label>화물분류</label>
+                              <select name="cargotype" id="cargotype">
+                                  <option value="A">일반화물</option>
+                                  <option value="B">기계하역</option>
+                                  <option value="C">무연탄</option>
+                                  <option value="D">송유관하역</option>
+                                  <option value="E">20ft</option>
+                              </select>
+                          </div>
+              
+                          <div class="join_row1">
+                                <label>육상수송 선택</label>
+                                <div>
+                                    <input type="radio" style="width: 20px; height: 15px;" class="form-check" id="port" name="locationtype" value="port"/>야적장(항구 앞)
+                                </div>
+                                <div>
+                                    <input type="radio"  style="width: 20px; height: 15px;" class="form-check" id="deliver" name="locationtype" value="deliver"/>지역창고
+                                </div>
+                            </div>
+                            <div class="join_row1">
+                                <label for="period">화물 보관 기간(일)</label>
+                                <input type="number" id="period" name="period" placeholder=" 최대 180일까지 보관가능"> 
+                            </div>
+                            <input type="hidden" name="scheduleno" th:value="${scheduleno}" />
+                    </div>
+                   </div>
+                   
+                   <div class="ok">
+                       <div class="btn-ok">
+                           <input type="button" value="다음" class="btn btn-primary" th:onclick="estimateAction()" />
+                       </div>
+                   </div>
+                </form>
+            </div>
+        </div>
+    </body>
+    <footer id="footer">
+        <div class="text_box">
+            <p>
+                <span>이메일 : adsfadf@naver.com</span><br>
+                <span>Address : 부산 남구 신선로 365 부경대학교 </span><br>
+                <span>call : 000-0000-0000</span>
+            </p>
+        </div>
+    </div>
+    </footer>
+    </html>
+    <script th:inline="javascript" type="text/javascript">
+        function estimateAction(){
+            const form = document.getElementById('form');
+            const weight = document.getElementById("cargoweight");
+            const locationtype = document.getElementsByName("locationtype")
+            const period = document.getElementById("period");
+
+
+            if(weight.value < 1){
+                alert('무게를 입력해주세요');
+                weight.focus();
+                return;
+            }
+
+            if($("input[name=locationtype]:radio:checked").length < 1){
+                alert('수송지를 선택해주세요');
+                return;
+            }
+
+            if(period.value < 1){
+                alert('보관 기간을 입력해주세요.');
+                weight.focus();
+                return;
+            }
+
+            if(period.value > 180){
+                alert('최대 180일까지 보관가능합니다');
+                weight.focus();
+                return;
+            }
+
+            form.submit();
+        }
+    </script>
+    <script>
+    
+        // 스크롤시 헤더 색상 변경
+        $(window).on('scroll',function(){
+                    if($(window).scrollTop()){
+                        $('header').addClass('active');
+                    }else{
+                        $('header').removeClass('active');
+                    }
+                });
+    </script>

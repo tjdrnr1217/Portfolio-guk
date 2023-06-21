@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charSet="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>결제 위젯</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 아이콘 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link rel='stylesheet' type='text/css' media='screen' th:href='@{/DJ/css/payment.css}'>
+  <div class="topimg">
+    <header class="he">
+        <div class="cnt">
+                <a th:href="@{/orca/home.do}"><h3>Orca</h3></a>
+                <nav>
+                   <ul id="topMenu">
+                        <li><a th:href="@{/orca/history.do}">회사소개</a>
+                            <ul> <!-- 순서없는 리스트 -->
+                                <li><a th:href="@{/orca/history.do}">연혁</a></li> <!-- li = º 이모양 -->
+                                <li><a th:href="@{/orca/organization.do}">조직도</a></li>
+                                <li><a th:href="@{/orca/ci.do}">CI</a></li>
+                                <li><a th:href="@{/orca/introduce.do}">인사말</a></li>
+                            </ul>
+                        </li>
+                        <li><a th:href="@{/orca/location.do}">해운정보</a>
+                            <ul>
+                                <li><a th:href="@{/orca/location.do}">배송</a></li>
+                                <li><a th:href="@{/orca/company/estimatepage.do}">주문</a></li>
+                                <li><a th:href="@{/orca/company/cargoorderlist.do}">조회</a></li>
+                            </ul>
+                        </li>
+                        <li><a th:href="@{/orca/operation.do}">사업분야</a>
+                            <ul>
+                                <li><a th:href="@{/orca/operation.do}">항만운영</a></li>
+                                <li><a th:href="@{/orca/operationequip.do}">항만운영장비</a></li>
+                                <li><a th:href="@{/orca/harborloading.do}">항만하역</a></li>
+                                <li><a th:href="@{/orca/portauxiliarybusiness.do}">항만부대사업</a></li>
+                            </ul>
+                        </li>
+                        <li><a th:href="@{/orca/schedulelist.do}">운행정보</a></li>
+                    </ul>               
+                </nav>
+    
+               
+                <aside class="top_menu">
+                    <div th:if="${user == null}" class="a">
+                        <ul class="btns">
+                            <a href="#" id="search"><i class="fa-solid fa-magnifying-glass fa-lg"></i></a>
+                            <li class="login"><a th:href="@{/orca/login.do}">LOGIN</a></li>
+                            <li class="join"><a th:href="@{/orca/join.do}">JOIN</a></li>
+                            <li class="mypage"><a th:href="@{/orca/company/mypage.do}">MYPAGE</a></li>
+                        </ul>
+                        </div>
+        
+                        <div th:if="${user != null}">
+                            <ul class="btns">
+                                <li th:text="${user.id}" class="username"></li>
+                                <li class="mypage"><a th:href="@{/orca/company/mypage.do}">MYPAGE</a></li>
+                                <form th:action="@{/logout.do}" method="post">
+                                    <li class="logout"><input type="submit" value="LOGOUT" class="logout2" /></li>
+                                </form>
+                            </ul>
+                        </div>
+                    </ul>
+                </aside>
+        </div>
+    </header>
+    <div class="slogan">
+        <h2>PAYMENT</h2>
+        <p>결제완료 후 취소는 고객센터 문의 바랍니다.</p>
+    </div>
+    </div>
+    <div class="submenu">
+        <div class="container">
+            <ul>
+                <li>
+                    <a th:href="@{/orca/company/payment.do(orderno=${param.orderno})}">PAYMENT</a>
+                    <a th:href="@{/orca/company/mypage.do?menu=3&page=1}">MYPAGE</a>
+                </li>
+            </ul>
+    
+        </div>
+    
+    </div>
+<body>
+    <div class="my-page">
+        <div class="my-header">
+            <div class="my-tex">
+                
+            </div>
+        </div>
+            <div class="my-body">
+                <div class="payinfo">
+                    <h1>회원 정보</h1>
+                    <hr />
+                    회원아이디 : <input type="text" th:value="${client.id}" readonly /> <br />
+                    사업자등록번호 : <input type="text" th:value="${client.brn}" readonly /> <br />
+                    회원이메일 : <input type="text" th:value="${client.email}" readonly /> <br />
+                    회원연락처 : <input type="text" th:value="${client.phone}" readonly /> <br />
+                    회원주소 : <input type="text" th:value="${client.address}" readonly /> <br />
+                    회원상세주소 : <input type="text" th:value="${client.daddress}" readonly /> <br />
+                    <hr />
+                    <h1>결제 정보</h1>
+                    <hr />
+                    총선박료 : <input type="text" th:value="${shipfare}" readonly /> <br />
+                    결제금액 : <input type="text" th:value="${sum}" readonly /> <br />
+                </div>
+                <div class="payments">
+                    <button id="payment-button" th:onclick="requestPay()">결제하기</button>
+                </div>          
+                <input type="hidden" th:value="${param.orderno}" id="ono" />
+            </div>          
+    </div>
+    	<!-- jQuery -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+<!-- iamport.payment.js -->
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+
+</body>
+<footer id="footer">
+    <div class="text_box">
+        <p>
+            <span>이메일 : adsfadf@naver.com</span><br>
+            <span>Address : 부산 남구 신선로 365 부경대학교 </span><br>
+            <span>call : 000-0000-0000</span>
+        </p>
+    </div>
+</div>
+</footer>
+
+<script th:inline="javascript" type="text/javascript">
+  var IMP = window.IMP;
+
+	IMP.init("imp61538727"); // 예: imp00000000
+
+	const ono = document.getElementById("ono").value;
+
+    function requestPay() {
+    
+      // IMP.request_pay(param, callback) 결제창 호출
+      const inputdata = {"paybtn":"ok", "orderno":ono};
+            $.ajax({
+                url: [[@{/api/orca/paylist.json}]],
+                type: "post",
+                data: JSON.stringify(inputdata),
+                dataType: "json",
+                contentType: "application/json",
+                success: function(result) {
+                    IMP.request_pay({ // param
+                    pg: "html5_inicis",
+                    pay_method: "card",
+                    merchant_uid: ono,
+                    name: ono,
+                    amount: 100, // result.sum
+                    buyer_email: result.email,
+                    buyer_name: result.name,
+                    buyer_tel: result.phone,
+                    buyer_addr: result.address,
+                    buyer_postcode: result.postcode
+                    }, function (rsp) { // callback
+                        console.log(rsp);
+                        if (rsp.success) {
+                            const successdata = {"success":"ok","orderno":ono,"paymethod":rsp.pay_method};
+                            $.ajax({
+                                url: [[@{/api/orca/paysuccess.json}]],
+                                type: "post",
+                                data: JSON.stringify(successdata),
+                                dataType: "json",
+                                contentType: "application/json",
+                                success: function(result) {
+                                    console.log(result.ret);
+                                    if(result.ret === 1) {
+                                        
+                                        location.href=[[@{/orca/company/mypage.do?menu=3&page=1}]];
+                                        return false;
+                                    }
+                                },
+                                error: function() {
+                    
+                                }   
+                            })
+                        
+                        } else {
+                            
+                            // 결제 실패 시 로직
+                        }
+                    });
+                },
+                error: function() {
+                    
+                }
+            })
+      
+    }
+
+    
+ 
+</script>
+</html>
+<script>
+    
+	// 스크롤시 헤더 색상 변경
+	$(window).on('scroll',function(){
+				if($(window).scrollTop()){
+					$('header').addClass('active');
+				}else{
+					$('header').removeClass('active');
+				}
+			});
+</script>

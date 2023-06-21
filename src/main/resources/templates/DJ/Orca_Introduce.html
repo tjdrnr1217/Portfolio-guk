@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>OrcaMypage</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <!-- 아이콘 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+    <link rel='stylesheet' type='text/css' media='screen' th:href='@{/DJ/css/introduce.css}'>
+
+     <!-- jquery cdn -->
+     <script src="https://code.jquery.com/jquery-3.6.4.js" ></script>
+</head>
+
+<div class="topimg">
+    <header class="he">
+        <div class="cnt">
+                <a th:href="@{/orca/home.do}"><h3>Orca</h3></a>
+                <nav>
+                   <ul id="topMenu">
+                        <li><a th:href="@{/orca/history.do}">회사소개</a>
+                            <ul> <!-- 순서없는 리스트 -->
+                                <li><a th:href="@{/orca/history.do}">연혁</a></li> <!-- li = º 이모양 -->
+                                <li><a th:href="@{/orca/organization.do}">조직도</a></li>
+                                <li><a th:href="@{/orca/ci.do}">CI</a></li>
+                                <li><a th:href="@{/orca/introduce.do}">인사말</a></li>
+                            </ul>
+                        </li>
+                        <li><a th:href="@{/orca/location.do}">해운정보</a>
+                            <ul>
+                                <li><a th:href="@{/orca/location.do}">배송</a></li>
+                                <li><a th:href="@{/orca/company/estimatepage.do}">주문</a></li>
+                                <li><a th:href="@{/orca/company/cargoorderlist.do}">조회</a></li>
+                            </ul>
+                        </li>
+                        <li><a th:href="@{/orca/operation.do}">사업분야</a>
+                            <ul>
+                                <li><a th:href="@{/orca/operation.do}">항만운영</a></li>
+                                <li><a th:href="@{/orca/operationequip.do}">항만운영장비</a></li>
+                                <li><a th:href="@{/orca/harborloading.do}">항만하역</a></li>
+                                <li><a th:href="@{/orca/portauxiliarybusiness.do}">항만부대사업</a></li>
+                            </ul>
+                        </li>
+                        <li><a th:href="@{/orca/schedulelist.do}">운행정보</a></li>
+                    </ul>               
+                </nav>
+    
+               
+                <aside class="top_menu">
+                    <div th:if="${user == null}" class="a">
+                        <ul class="btns">
+                            <a href="#" id="search"><i class="fa-solid fa-magnifying-glass fa-lg"></i></a>
+                            <li class="login"><a th:href="@{/orca/login.do}">LOGIN</a></li>
+                            <li class="join"><a th:href="@{/orca/join.do}">JOIN</a></li>
+                            <li class="mypage"><a th:href="@{/orca/company/mypage.do}">MYPAGE</a></li>
+                        </ul>
+                        </div>
+        
+                        <div th:if="${user != null}">
+                            <ul class="btns">
+                                <li th:text="${user.username}" class="username"></li>
+                                <li class="mypage"><a th:href="@{/orca/company/mypage.do}">MYPAGE</a></li>
+                                <form th:action="@{/logout.do}" method="post">
+                                    <li class="logout"><input type="submit" value="LOGOUT" class="logout2" /></li>
+                                </form>
+                            </ul>
+                        </div>
+                    </ul>
+                </aside>
+        </div>
+    </header>
+    <div class="slogan">
+        <h2>COMPANY</h2>
+        <p>화물/에너지 전문 수송선사인 오르카는 고객의 가치를 존중합니다.</p>
+    
+    </div>
+    </div>
+    <div class="submenu">
+        <div class="container">
+            <ul>
+                <li>
+                    <a th:href="@{/orca/history.do}">연혁</a>
+                    <a th:href="@{/orca/organization.do}">조직도</a>
+                    <a th:href="@{/orca/ci.do}">CI</a>
+                    <a th:href="@{/orca/introduce.do}">인사말</a>
+                </li>
+            </ul>
+    
+        </div>
+    
+    </div>
+
+    <body>
+        <div class="my-page">
+            <div class="my-header">
+                <div class="my-tex">
+                    <span>CEO 인사말</span>
+                    <hr>
+                </div>
+            </div>
+                <div class="my-body">          
+                    <div class="my-wrap">
+                        <div class="my-box">
+                            <div class="my-info">
+                                <div class="my-label">
+                                    <label id="transit2">열정</label><label id="transit">과</label><label id="transit2">젊음</label><label id="transit"> 을 갖춘 기업으로</label> <br />
+                                    <br />
+                                    <label id="transit"> 고객의 동반자로서</label> <br/>
+                                    <br />
+                                    <label id="transit"> 늘 함께하고자 합니다.</label> <br/>
+                                    <br />
+                                    <label id="transit3"> Orca(주) 대표이사</label> <br/>
+                                </div>
+                                <div class="my-signimage">
+                                    <img id="signimage" th:src="@{/DJ/images/sign.png}">
+                                </div>
+                                <div class="my-infoimage">
+                                    <img th:src="@{/DJ/images/b.jpg}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="my-introduce">
+                            <p>안녕하십니까.</p>
+                            <p>항상 Orca를 아껴주시는 여러분께 진심으로 감사의 말씀을 전합니다.</p>
+                            <br />
+                            <p>저희 Orca는 항만 물류 산업의 기여를 위해 힘쓰고 있습니다.</p>
+                            <p>품질경영시스템을 바탕으로 효과적인 경영전략을 추진하여 운송 서비스의 품질을 보증하고 있으며 장기적인 측면에서</p>
+                            <p>종합물류기업으로서 고객만족을 극대화하여 신뢰받는 기업으로 도약하고 있습니다.</p>
+                            <br />
+                            <p>아울러 저희 Orca는 물류환경에서 고객 여러분의 다양한 니즈를 만족시켜 드리고자 적극적인 선박 투자와 IT역량강화</p>
+                            <p>를 통해 갖춘 데이터기반의 고객 지향적인 물류시스템을 운용하여 앞으로 보단 나은 서비스를 제공하겠습니다.</p>
+                            <br />
+                            <p>존경하는 고객 여러분, 저희 Orca는 고객 여러분의 가족이자 동반자로서 늘 여러분과 함께 할 것입니다.</p>
+                            <p>열정과 젊음을 갖춘 기업, 저희 Orca에 여러분의 끊임없는 성원과 관심 부탁드립니다.</p>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <script type="text/javascript">
+            
+      function logoutAction(){
+           // <form action="logout.do" method="post" display="none" ></form>
+           var form = document.createElement("form");
+           form.setAttribute("action", "orcalogout.do");
+           form.setAttribute("method", "post");
+           form.style.display="none";
+           // 위에 생성된 form을 body안에 자식으로 추가시킴
+           document.body.appendChild(form);
+           // form을 실행시킴
+           form.submit();
+          }
+          
+      </script>
+    </body>
+    <footer id="footer">
+        <div class="text_box">
+            <p>
+                <span>이메일 : adsfadf@naver.com</span><br>
+                <span>Address : 부산 남구 신선로 365 부경대학교 </span><br>
+                <span>call : 000-0000-0000</span>
+            </p>
+        </div>
+    </div>
+    </footer>
+    </html>
+    
+    <script>
+    
+        // 스크롤시 헤더 색상 변경
+        $(window).on('scroll',function(){
+                    if($(window).scrollTop()){
+                        $('header').addClass('active');
+                    }else{
+                        $('header').removeClass('active');
+                    }
+                });
+    </script>

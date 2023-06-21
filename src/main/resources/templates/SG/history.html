@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>orca</title>
+    <!-- 아이콘 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel='stylesheet' type='text/css' media='screen' th:href='@{/SG/css/history.css}'>
+
+    
+     <!-- jquery cdn -->
+     <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+    
+</head>
+<div class="topimg">
+    <header class="he">
+        <div class="cnt">
+                <a th:href="@{/orca/home.do}"><h3>Orca</h3></a>
+                <nav>
+                   <ul id="topMenu">
+                        <li><a th:href="@{/orca/history.do}">회사소개</a>
+                            <ul> <!-- 순서없는 리스트 -->
+                                <li><a th:href="@{/orca/history.do}">연혁</a></li> <!-- li = º 이모양 -->
+                                <li><a th:href="@{/orca/organization.do}">조직도</a></li>
+                                <li><a th:href="@{/orca/ci.do}">CI</a></li>
+                                <li><a th:href="@{/orca/introduce.do}">인사말</a></li>
+                            </ul>
+                        </li>
+                        <li><a th:href="@{/orca/location.do}">해운정보</a>
+                            <ul>
+                                <li><a th:href="@{/orca/location.do}">배송</a></li>
+                                <li><a th:href="@{/orca/company/estimatepage1.do}">주문</a></li>
+                                <li><a th:href="@{/orca/company/cargoorderlist.do}">조회</a></li>
+                            </ul>
+                        </li>
+                        <li><a th:href="@{/orca/operation.do}">사업분야</a>
+                            <ul>
+                                <li><a th:href="@{/orca/operation.do}">항만운영</a></li>
+                                <li><a th:href="@{/orca/operationequip.do}">항만운영장비</a></li>
+                                <li><a th:href="@{/orca/harborloading.do}">항만하역</a></li>
+                                <li><a th:href="@{/orca/portauxiliarybusiness.do}">항만부대사업</a></li>
+                            </ul>
+                        </li>
+                        <li><a th:href="@{/orca/schedulelist.do}">운행정보</a></li>
+                    </ul>               
+                </nav>
+    
+               
+                <aside class="top_menu">
+                    <div th:if="${user == null}" class="a">
+                        <ul class="btns">
+                            <a href="#" id="search"><i class="fa-solid fa-magnifying-glass fa-lg"></i></a>
+                            <li class="login"><a th:href="@{/orca/login.do}">LOGIN</a></li>
+                            <li class="join"><a th:href="@{/orca/join.do}">JOIN</a></li>
+                            <li class="mypage"><a th:href="@{/orca/company/mypage.do}">MYPAGE</a></li>
+                        </ul>
+                        </div>
+        
+                        <div th:if="${user != null}">
+                            <ul class="btns">
+                                <li th:text="${user.username}" class="username"></li>
+                                <li class="mypage"><a th:href="@{/orca/company/mypage.do}">MYPAGE</a></li>
+                                <form th:action="@{/logout.do}" method="post">
+                                    <li class="logout"><input type="submit" value="LOGOUT" class="logout2" /></li>
+                                </form>
+                            </ul>
+                        </div>
+                    </ul>
+                </aside>
+        </div>
+    </header>
+    <div class="slogan">
+        <h2>COMPANY</h2>
+        <p>화물/에너지 전문 수송선사인 오르카는 고객의 가치를 존중합니다.</p>
+    
+    </div>
+    </div>
+    <div class="submenu">
+        <div class="container">
+            <ul>
+                <li>
+                    <a th:href="@{/orca/history.do}">연혁</a> <!-- li = º 이모양 -->
+                    <a th:href="@{/orca/organization.do}">조직도</a>
+                    <a th:href="@{/orca/ci.do}">CI</a>
+                    <a th:href="@{/orca/introduce.do}">인사말</a>
+                </li>
+            </ul>
+    
+        </div>
+    
+    </div>
+
+<body>
+    <div class="my-page">
+        <div class="my-header">
+            <div class="my-tex">
+                <span>연 혁</span>
+            </div>
+        </div>
+        <div class="hcnt">
+            <div class="h1box1" >
+                <div class="h1box-img" >
+                    <img th:src="@{/SG/image/his01.jpg}">
+                    <div class="text01" >
+                        <p>2023.01 ~ 2023.03</p>
+                    </div>
+                </div>
+                <div class="b1h2">     
+                        <ul class="h1list"> <!-- 순서없는 리스트 -->
+                            <li>2023.03 <span>Orca 인원조정</span></li> <!-- li = º 이모양 -->
+                            <li>2023.02 <span>Orca 법인전환</span></li>
+                            <li>2023.01 <span>Orca 설립</span></li>
+                        </ul>                 
+                </div>
+            </div>
+
+            <div class="h1box2">
+                <div class="h1box-img">
+                    <img th:src="@{/SG/image/his02.jpg}" alt="">
+                    <div class="text01" >
+                        <p>2023.04 ~ 2023.06</p>
+                    </div>
+                </div>
+                <div class="b1h2">     
+                        <ul class="h1list"> <!-- 순서없는 리스트 -->
+                            <li>2023.06 <span>항만 물류 시스템 런칭</span></li> <!-- li = º 이모양 -->
+                            <li>2023.05 <span>Orca 그룹 출범</span></li>
+                            <li>2023.04 <span>선박 인수</span></li>
+                        </ul>                 
+                </div>
+            </div>
+        
+           
+        </div>
+    </div>
+</body>
+<footer id="footer">
+    <div class="text_box">
+        <p>
+            <span>이메일 : adsfadf@naver.com</span><br>
+            <span>Address : 부산 남구 신선로 365 부경대학교 </span><br>
+            <span>call : 000-0000-0000</span>
+        </p>
+    </div>
+</div>
+</footer>
+</html>
+
+<script>
+
+    // 스크롤시 헤더 색상 변경
+    $(window).on('scroll',function(){
+                if($(window).scrollTop()){
+                    $('header').addClass('active');
+                }else{
+                    $('header').removeClass('active');
+                }
+            });
+</script>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.finalproject.DJ.mapper.OrcaWaitingViewMapper">
+
+    <select id="selectWaitingViewList" parameterType="map" resultType="com.finalproject.DJ.dto.Waitingview">
+        SELECT w.* FROM(SELECT w.*,ROW_NUMBER() OVER(ORDER BY applicationno DESC) rown FROM WAITINGVIEW w WHERE w.id = #{id})w WHERE rown <![CDATA[ >= ]]> #{start} AND rown <![CDATA[ <= ]]> #{end} ORDER BY applicationno DESC 
+    </select>
+
+    <select id="countWaitingView" parameterType="string" resultType="long">
+        SELECT COUNT(*) FROM WAITINGVIEW WHERE id = #{id}
+    </select>
+</mapper>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>orca</title>
+    <!-- 아이콘 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <link rel='stylesheet' type='text/css' media='screen' th:href='@{/JE/css/pab.css}'>
+	
+	 <!-- jquery cdn -->
+     <script src="https://code.jquery.com/jquery-3.6.4.js" ></script>
+     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    
+    
+</head>
+<div class="topimg">
+<header class="he">
+    <div class="cnt">
+            <a th:href="@{/orca/home.do}"><h3>Orca</h3></a>
+            <nav>
+               <ul id="topMenu">
+                    <li><a th:href="@{/orca/history.do}">회사소개</a>
+                        <ul> <!-- 순서없는 리스트 -->
+                            <li><a th:href="@{/orca/history.do}">연혁</a></li> <!-- li = º 이모양 -->
+                            <li><a th:href="@{/orca/organization.do}">조직도</a></li>
+                            <li><a th:href="@{/orca/ci.do}">CI</a></li>
+                            <li><a th:href="@{/orca/introduce.do}">인사말</a></li>
+                        </ul>
+                    </li>
+                    <li><a th:href="@{/orca/location.do}">해운정보</a>
+                        <ul>
+                            <li><a th:href="@{/orca/location.do}">배송</a></li>
+                            <li><a th:href="@{/orca/company/estimatepage.do}">주문</a></li>
+                            <li><a th:href="@{/orca/company/cargoorderlist.do}">조회</a></li>
+                        </ul>
+                    </li>
+                    <li><a th:href="@{/orca/operation.do}">사업분야</a>
+                        <ul>
+                            <li><a th:href="@{/orca/operation.do}">항만운영</a></li>
+                            <li><a th:href="@{/orca/operationequip.do}">항만운영장비</a></li>
+                            <li><a th:href="@{/orca/harborloading.do}">항만하역</a></li>
+                            <li><a th:href="@{/orca/portauxiliarybusiness.do}">항만부대사업</a></li>
+                        </ul>
+                    </li>
+                    <li><a th:href="@{/orca/schedulelist.do}">운행정보</a></li>
+                </ul>               
+            </nav>
+
+           
+            <aside class="top_menu">
+                <div th:if="${user == null}" class="a">
+                    <ul class="btns">
+                        <a href="#" id="search"><i class="fa-solid fa-magnifying-glass fa-lg"></i></a>
+                        <li class="login"><a th:href="@{/orca/login.do}">LOGIN</a></li>
+                        <li class="join"><a th:href="@{/orca/join.do}">JOIN</a></li>
+                        <li class="mypage"><a th:href="@{/orca/company/mypage.do}">MYPAGE</a></li>
+                    </ul>
+                    </div>
+    
+                    <div th:if="${user != null}">
+                        <ul class="btns">
+                            <li th:text="${user.username}" class="username"></li>
+                            <li class="mypage"><a th:href="@{/orca/company/mypage.do}">MYPAGE</a></li>
+                            <form th:action="@{/logout.do}" method="post">
+                                <li class="logout"><input type="submit" value="LOGOUT" class="logout2" /></li>
+                            </form>
+                        </ul>
+                    </div>
+                </ul>
+            </aside>
+    </div>
+</header>
+<div class="slogan">
+    <h2>BUSINESS</h2>
+    <p>항만분야의 자부심! 화물이 있는곳, 언제나 오르카가 있습니다.</p>
+
+</div>
+</div>
+<div class="submenu">
+    <div class="container">
+        <ul>
+            <li>
+                <a th:href="@{/orca/operation.do}">항만운영</a>
+                <a th:href="@{/orca/operationequip.do}">항만운영장비</a>
+                <a th:href="@{/orca/harborloading.do}">항만하역</a>
+                <a th:href="@{/orca/portauxiliarybusiness.do}">항만부대사업</a>
+            </li>
+        </ul>
+
+    </div>
+
+</div>
+<body>
+    <div>
+       <div class="my-page">
+          <form th:action="@{/orca/portauxiliarybusiness.do}" method="get" id="form">
+              <div class="my-header">
+                  <div class="my-tex">
+                      <span>항만부대사업</span>
+                      <hr>
+                  </div>
+              </div>
+                      
+                      <div class="joincnt">
+                        <div class="join_row1">
+                        <label for="transit" id="transit">운송, 보관 등</label><label id="transit2">기타 물류 서비스</label><label>를 제공합니다.</label>
+                    </div>
+
+                    </div>
+                  </div>
+                  <!-- <div class="white_box">
+                  </div> -->
+                  <div id="blue">
+                    <div class="blue_box">
+                        <p id="inline-text">
+                            <img th:src="@{/JE/images/pab.png}" width="380px" height="400px" alt="이미지없음"/><br/>
+                            <span id="spanstyle"><i class="fa-solid fa-ship"></i>해상운송</span><br/><br/>
+                            <span>글로벌 네트워크를 통해<br></span>
+                            <span>해상운송서비스를 제공합니다.</span><br>
+                        </p>
+                        <p id="inline-text">
+                            <img th:src="@{/JE/images/pab2.png}" width="380px" height="400px" alt="이미지없음"/><br/>
+                            <span id="spanstyle"><i class="fa-solid fa-truck"></i>운송</span><br/><br/>
+                            <span>전국 운송 네트워크구축을 위해<br></span>
+                            <span>운송서비스를 제공합니다.</span><br>
+                        </p>
+                        <p id="inline-text">
+                            <img th:src="@{/JE/images/pab3.jpg}" width="380px" height="400px" alt="이미지없음"/><br/>
+                            <span id="spanstyle"><i class="fa-solid fa-box"></i>보관</span><br/><br/>
+                            <span>특수화물, 고부가가치 화물보관을 위해<br></span>
+                            <span>안전한 보관장소를 제공합니다.</span><br>
+                        </p>
+                    </div>
+                </div>
+            </form>
+    </div>
+</body>
+<footer id="footer">
+    <div class="text_box">
+        <p>
+            <span>이메일 : adsfadf@naver.com</span><br>
+            <span>Address : 부산 남구 신선로 365 부경대학교 </span><br>
+            <span>call : 000-0000-0000</span>
+        </p>
+    </div>
+</footer>
+</html>
+<script>
+
+    // 스크롤시 헤더 색상 변경
+    $(window).on('scroll',function(){
+                if($(window).scrollTop()){
+                    $('header').addClass('active');
+                }else{
+                    $('header').removeClass('active');
+                }
+            });
+</script>
+              

@@ -1,0 +1,512 @@
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'yg-jalnan';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Happiness-Sans-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2205@1.0/Happiness-Sans-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'establishRetrosansOTF';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2112@1.0/establishRetrosansOTF.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+}
+
+
+body
+{
+margin: 0;
+}
+
+header {
+    width: 100%;
+    height: 65px;
+    padding: 20px 0;
+    position: fixed;
+    /* 스크롤에도 고정 */
+    z-index: 999;
+    transition: .3s;
+}
+
+header.active {
+    background: rgba(0, 0, 0, 0.8);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.16);
+    transition: .3s;
+}
+
+header.active #topMenu>li>a {
+    color: white;
+}
+
+header.active .btns>li>a {
+    color: white;
+}
+
+
+h3
+{
+font-size: 55px;
+margin: 0;
+color: #07c;
+height: 100%;
+padding-right: 50px;
+padding-left: 45px;     
+}
+
+li
+{
+list-style: none;
+}
+
+.cnt
+{
+display: flex;
+align-items: center;
+width: 100%;
+
+}
+
+ul
+{
+display: flex; /* 가로정렬 */
+height: 100%;
+margin: 0;
+align-items: flex-end;
+justify-content: space-between; /* 일정한 공백으로 배치 */
+align-items: baseline;
+}
+
+li:nth-child(4) /* 2n은 짝수 2n-1은 홀수 */
+{
+padding-right: 0;
+}
+
+a
+{
+text-decoration: none;
+}
+
+a:hover
+{
+color: white;
+}
+
+
+#topMenu 
+{
+height: 60px;
+}
+
+/* 서브메뉴를 absolute로 만들기 위해 부모 요소를 relaticve로 지정 */
+/* display: flex;align-items: left;justify-content: left; */
+
+#topMenu>li 
+{
+float: left;
+position: relative;
+width: 150px;
+/* padding-right: 65px; */
+font-size: 17px;
+/* width: 219px; */
+margin: 0 32px;
+text-align: center;
+}
+
+#topMenu>li>a {
+display: block;
+/* 링크 텍스트를 블록으로  */
+color: #fff;
+font-weight: 600;
+padding: 20px;
+}
+
+#topMenu>li>a>span {
+font-size: 0.5em;
+}
+
+#topMenu>li:hover >a{
+color:#0077cc;
+}
+
+
+#topMenu>li>ul 
+{
+display: none;
+width: 150px;
+background-color: #0077cc;
+left: 0%;
+top: 15px;
+/* left: 20px; */
+padding-left: 0;
+position: inherit;
+border-radius: 20px;
+padding:20px 0;
+box-shadow: 3px 3px 10px rgba(0,0,0,0.16);
+}
+
+#topMenu>li>ul>li
+{
+/* padding: 10px 10px 10px 30px; 물어볼거 */
+padding: 10px 0;
+}
+
+#topMenu>li>ul>li>a
+{
+font-size: 16px;
+/* padding: 10px; */
+color: #fff;
+font-weight:500;
+}
+
+#topMenu>li:hover>ul {
+/* hover가 마우스 올릴시 */
+display: block;
+/* 메인 메뉴 항목 위로 오버하면 서브메뉴 표시 */
+z-index: 10;
+/* 슬라이드 쇼에 다리지 않게 조절 */
+}
+
+#topMenu>li>ul>li>a:hover {
+text-decoration: underline;
+}
+
+.btns>li>a
+{
+display: block;
+/* 링크 텍스트를 블록으로  */
+color: #fff;
+font-weight: 600;
+padding: 20px; 
+/* 상 하 좌 우 다 20px씩 패딩준다 */
+}
+
+.top_menu
+{
+margin-left: auto; /* 맨 오른쪽으로 붙이고 싶을때 */
+padding-right: 25px;
+}
+
+.top_menu>
+
+i
+{
+    margin-right: 10px;
+}
+
+.join
+{
+     margin-right: 25px;
+}
+
+.btns>li>a:hover {
+    text-decoration: underline;
+}
+#search:hover
+{
+    color: #000;
+    text-shadow: 0 -1px;
+}
+
+.fa-solid
+{
+    color: white;
+}
+
+#footer
+{
+    display: flex;
+    width: 100%;
+    height: 260px;
+    background-color: #282828;
+    position: relative;
+    align-items: center;
+
+}
+
+#footer:before {
+    content: '';
+    position: absolute;
+    width: 550px;
+    height: 390px;
+    background: url('/');
+    bottom: 0;
+    left: 86px;
+}
+
+
+.text_box
+{   
+    display: flex;
+    margin-left: auto;
+    width: 420px;
+}
+
+.text_box>p>span
+{
+    display: flex;
+    color: aliceblue;
+    font-size: 17px;
+}
+
+
+.slide01
+{
+    width:100%;
+    background: url('../image/항구1.jpg') no-repeat center/cover;
+    height: 100%;
+    filter: brightness(0.8); /* 사진 필터 */
+}
+
+.cnt2
+{
+    position:relative;  
+    height:100vh; 
+}
+.slide02
+{
+    width:100%; 
+    background: url('../image/하역1.jpg') no-repeat center/cover;
+    height: 100%;
+}
+
+.slide03
+{
+    width:100%; 
+    background: url('../image/해운1.jpg') no-repeat center/cover;
+    height: 100%;
+}
+
+.main-box
+{
+    position:absolute; 
+    bottom:30px; 
+    /* left:50%;   위아래 두 세트는 position:absolute; 사용시 가운데 정렬 
+    transform: translateX(-50%); */
+    z-index: 9;
+    width:100%;
+    height:200px;
+    background: rgba(0,119,204,0.6);
+}
+.main-box .box-btn{
+    width:auto;
+    display:flex;
+    justify-content: space-evenly;
+    height:100%;
+    padding:0 150px;
+}
+.main-box .box-btn .btn{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top:32px;
+    width:calc(100% / 3);
+}
+
+.main-box .box-btn .btn:nth-last-child(1){
+    border-right:none;
+}
+
+
+.main-box .box-btn .btn:hover{
+    background: #2964b4;
+}
+
+.main-box .btn p
+{
+    color:#fff;
+    font-size: 25px;
+    font-weight:600;
+    margin:0;
+}
+
+.circle
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fa-lg.custom {
+    font-size: 3.5em;
+    line-height: .05em;
+    vertical-align: -0.075em;
+    color:#fff;
+}
+
+.btn.text01
+{
+    position: absolute;
+    z-index: 9;
+    left: 180px; /*left top 등은 position: absolute; 있는 곳에서 사용*/
+    top: 200px;
+}
+
+.btn.text01>p
+{
+    color: aliceblue;
+    font-family: 'Happiness-Sans-Bold';
+    font-size: 60px;
+}
+
+.swiper{
+    height:100%;
+}
+
+/* .swiper-wrapper{
+    height:auto;
+} */
+
+.ico-box{
+    width:56px;
+    height:70px;
+}
+
+#footer:before {
+    content: '';
+    position: absolute;
+    width: 550px;
+    height: 390px;
+    background: url('/');
+    bottom: 0;
+    left: 86px;
+}
+
+.cnt3{
+    width: 100%;
+    height: 400px;
+    position: relative;
+    margin-bottom: 55vh;
+    margin-top: 7vh;
+}
+
+
+ .slide2 {
+      width: 100%;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      top: 20%;
+      margin-top: -25px;
+      
+    }
+
+    .swiper-slide {
+      background-position: center;
+      background-size: cover;
+      width: 300px;
+      height: 100%;
+    }
+
+    .sli01
+    {
+        background: url("../image/cm.jpg") no-repeat center/cover;
+        width: 40%;
+        margin: 0;
+    }
+
+      .sli02
+    {
+        background: url("../image/bu.jpg") no-repeat center/cover;
+        width: 40%;
+        margin: 0;
+
+    }
+
+      .sli03
+    {
+        background: url("../image/전구.jpg") no-repeat center/cover;
+        
+        width: 40%;
+        margin: 0;
+
+    }
+
+      .sli04
+    {
+        background: url("../image/홍콩.jpg") no-repeat center/cover;
+        width: 40%;
+        margin: 0;
+
+    }
+
+    .cnt3box > h2
+    {
+        font-family: 'establishRetrosansOTF';
+        font-size: 80px;
+        margin-left: 80px;
+        margin-bottom: 10px;
+
+    }
+
+      .cnt3box > p
+    {
+        font-family: 'establishRetrosansOTF';
+        font-size: 20px;
+        margin-left: 100px;
+        margin-top: 0;
+    }
+
+
+    /* 모든 영역에 추가 */
+    .logout2
+    {
+        background-color: transparent;
+        border: 0;
+        display: block;
+        color: #fff;
+        font-weight: 600;
+        padding: 20px;
+    }
+
+    .logout2:hover
+    {
+        text-decoration: underline;
+    }
+
+    .username
+    {
+        display: block;
+        color: #fff;
+        font-weight: 600;
+        padding: 20px;
+    }
+
+    header.active .username{
+        color:#fff;
+    }
+    
+    header.active .logout2{
+        color:#fff;
+    }
+
+    .history > h3
+    {
+        color: white;
+    }
+
+    .fa-lg.custom {
+        font-size: 4em;
+        line-height: 0.4em;
+ 
+        color: #fff;
+    }
+
+    .fa-2xl {
+        font-size: 3.5em;
+        line-height: 0.5em;
+
+    }

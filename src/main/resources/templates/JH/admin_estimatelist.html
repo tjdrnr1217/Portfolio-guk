@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>orca</title>
+    <!-- 아이콘 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+    <link rel='stylesheet' type='text/css' media='screen' th:href='@{/JH/css/adminestimatelist.css}'>
+
+     <!-- jquery cdn -->
+     <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+</head>
+<div class="topimg">
+    <header class="he">
+        <div class="cnt">
+                <a th:href="@{/orca/admin/home.do}"><h3>Orca</h3></a>
+                <nav>
+                   <ul id="topMenu">
+                        <li><a th:href="@{/orca/history.do}">회사소개</a>
+                            <ul> <!-- 순서없는 리스트 -->
+                                <li><a th:href="@{/orca/history.do}">연혁</a></li> <!-- li = º 이모양 -->
+                                <li><a th:href="@{/orca/organization.do}">조직도</a></li>
+                                <li><a th:href="@{/orca/ci.do}">CI</a></li>
+                                <li><a th:href="@{/orca/introduce.do}">인사말</a></li>
+                            </ul>
+                        </li>
+                        <li><a th:href="@{/orca/location.do}">해운정보</a>
+                            <ul>
+                                <li><a th:href="@{/orca/location.do}">배송</a></li>
+                                <li><a th:href="@{/orca/company/estimatepage.do}">주문</a></li>
+                                <li><a th:href="@{/orca/company/cargoorderlist.do}">조회</a></li>
+                            </ul>
+                        </li>
+                        <li><a th:href="@{/orca/operation.do}">사업분야</a>
+                            <ul>
+                                <li><a th:href="@{/orca/operation.do}">항만운영</a></li>
+                                <li><a th:href="@{/orca/operationequip.do}">항만운영장비</a></li>
+                                <li><a th:href="@{/orca/harborloading.do}">항만하역</a></li>
+                                <li><a th:href="@{/orca/portauxiliarybusiness.do}">항만부대사업</a></li>
+                            </ul>
+                        </li>
+                        <li><a th:href="@{/orca/admin/schedule.do}">운행정보</a></li>
+                    </ul>               
+                </nav>
+    
+               
+                <aside class="top_menu">
+                    <div th:if="${user == null}" class="a">
+                        <ul class="btns">
+                            <a href="#" id="search"><i class="fa-solid fa-magnifying-glass fa-lg"></i></a>
+                            <li class="login"><a th:href="@{/orca/login.do}">LOGIN</a></li>
+                            <li class="join"><a th:href="@{/orca/join.do}">JOIN</a></li>
+                        </ul>
+                        </div>
+        
+                        <div th:if="${user != null}">
+                            <ul class="btns">
+                                <li th:text="${user.username}" class="username"></li>
+                                <form th:action="@{/logout.do}" method="post">
+                                    <li class="logout"><input type="submit" value="LOGOUT" class="logout2" /></li>
+                                </form>
+                            </ul>
+                        </div>
+                    </ul>
+                </aside>
+        </div>
+    </header>
+    <div class="slogan">
+        <h2>BUSINESS</h2>
+        <p>항만분야의 자부심! 화물이 있는곳, 언제나 오르카가 있습니다.</p>
+    
+    </div>
+    </div>
+    <div class="submenu">
+        <div class="container">
+            <ul>
+                <li>
+                    <a th:href="@{/orca/admin/estimatelist.do}">가견적목록</a>
+                </li>
+            </ul>
+    
+        </div>
+    
+    </div>
+</header>
+<body>
+    <div class="my-page">
+        <form th:action="@{/orca/admin/shipassignment.do}" method="get" id="form2">
+        <div class="my-header">
+            <div class="my-tex">
+                <i class="fa-solid fa-file-circle-exclamation fa-2xl"></i>
+                <span>가견적서 목록</span>
+            </div>
+        </div>
+        <div class="or-box">              
+            <div class="or-table">        
+                <div class="ot">
+                    <table class="table table-hover">
+                        <thead class="ot1">
+                            <tr>
+                                <th>선택</th>
+                                <th>견적번호</th>
+                                <th>주문자아이디</th>
+                                <th>최종 배송지</th>		
+                                <th>총 가견적금액</th>
+                                <th>운행시퀀스</th>
+                                <th>화물번호</th>
+                                <th>진행상태</th>		
+                                <th>견적일자</th>		
+                            </tr>
+                        </thead>
+                        <tbody class="ot1">
+                            <tr th:each="obj : ${list}">
+                                <td><input type="radio" th:value="${obj.estimateno}" name="estimateno"></td>
+                                <td th:text="${obj.estimateno}" name="estimateno"></td>
+                                <td th:text="${obj.id}" name="id"></td>
+                                <td th:text="${obj.cargo.locationtype}" name="cargo.locationtype"></td>
+                                <td th:text="${obj.totalfare}" name="totalfare"></td>
+                                <td th:text="${obj.schedule.scheduleno}" name="schedule.scheduleno"></td>         
+                                <td th:text="${obj.cargo.cargonumber}" name="cargo.cargonumber"></td>
+                                <td th:text="${obj.state}" name="state" ></td>
+                                <td th:text="${obj.estimatedate}" name="estimatedate"></td> 
+                            </tr>
+                            </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+        </div> 
+        <div id="pagenation">
+            <th:block th:each="num : ${#numbers.sequence(1, pages)}" >
+                <a th:href="@{/orca/admin/estimatelist.do(page=${num})}" th:text="${num}"></a>
+            </th:block>
+        </div>
+    <div class="ok">
+        <div class="btn-ok">
+            <input type="button" value="선택" class="insertbutton" onclick="selectAction()"/> 
+        </div>
+    </div> 
+</form> 
+    </div>
+</body>
+<footer id="footer">
+    <div class="text_box">
+        <p>
+            <span>이메일 : adsfadf@naver.com</span><br>
+            <span>Address : 부산 남구 신선로 365 부경대학교 </span><br>
+            <span>call : 000-0000-0000</span>
+        </p>
+    </div>
+</div>
+</footer>
+</html>
+
+<script>
+    // 스크롤시 헤더 색상 변경
+    $(window).on('scroll',function(){
+                if($(window).scrollTop()){
+                    $('header').addClass('active');
+                }else{
+                    $('header').removeClass('active');
+                }
+            });
+</script>
+<script>
+    function selectAction(){
+
+    form2.submit();
+    }
+</script>

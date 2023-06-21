@@ -1,0 +1,569 @@
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'yg-jalnan';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Happiness-Sans-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2205@1.0/Happiness-Sans-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+body {
+    margin: 0;
+}
+
+header {
+    width: 100%;
+    height: 65px;
+    padding: 20px 0;
+    position: fixed;
+    /* 스크롤에도 고정 */
+    z-index: 999;
+    transition: .3s;
+}
+
+header.active {
+    background: rgba(0, 0, 0, 0.8);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.16);
+    transition: .3s;
+}
+
+header.active #topMenu>li>a {
+    color: white;
+}
+
+header.active .btns>li>a {
+    color: white;
+}
+
+.logout2 {
+    background-color: transparent;
+    border: 0;
+    display: block;
+    color: #fff;
+    font-weight: 600;
+    padding: 20px;
+}
+
+.logout2:hover {
+    text-decoration: underline;
+}
+
+.username {
+    display: block;
+    color: #fff;
+    font-weight: 600;
+    padding: 20px;
+}
+
+header.active .username {
+    color: #fff;
+}
+
+header.active .logout2 {
+    color: #fff;
+}
+
+h3 {
+    font-size: 55px;
+    margin: 0;
+    color: #07c;
+    height: 100%;
+    padding-right: 50px;
+    padding-left: 45px;
+}
+
+li {
+    list-style: none;
+}
+
+.cnt {
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+}
+
+ul {
+    display: flex;
+    /* 가로정렬 */
+    height: 100%;
+    margin: 0;
+    align-items: flex-end;
+    justify-content: space-between;
+    /* 일정한 공백으로 배치 */
+    align-items: baseline;
+}
+
+li:nth-child(4)
+
+/* 2n은 짝수 2n-1은 홀수 */
+    {
+    padding-right: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    color: white;
+}
+
+
+#topMenu {
+    height: 60px;
+}
+
+/* 서브메뉴를 absolute로 만들기 위해 부모 요소를 relaticve로 지정 */
+/* display: flex;align-items: left;justify-content: left; */
+
+#topMenu>li {
+    float: left;
+    position: relative;
+    width: 150px;
+    /* padding-right: 65px; */
+    font-size: 17px;
+    /* width: 219px; */
+    margin: 0 32px;
+    text-align: center;
+}
+
+#topMenu>li>a {
+    display: block;
+    /* 링크 텍스트를 블록으로  */
+    color: white;
+    font-weight: 600;
+    padding: 20px;
+}
+
+#topMenu>li>a>span {
+    font-size: 0.5em;
+}
+
+#topMenu>li:hover>a {
+    color: #0077cc;
+}
+
+
+#topMenu>li>ul {
+    display: none;
+    width: 150px;
+    background-color: #0077cc;
+    left: 0%;
+    top: 15px;
+    /* left: 20px; */
+    padding-left: 0;
+    position: inherit;
+    border-radius: 20px;
+    padding: 20px 0;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.16);
+}
+
+#topMenu>li>ul>li {
+    /* padding: 10px 10px 10px 30px; 물어볼거 */
+    padding: 10px 0;
+}
+
+#topMenu>li>ul>li>a {
+    font-size: 16px;
+    /* padding: 10px; */
+    color: #fff;
+    font-weight: 500;
+}
+
+#topMenu>li:hover>ul {
+    /* hover가 마우스 올릴시 */
+    display: block;
+    /* 메인 메뉴 항목 위로 오버하면 서브메뉴 표시 */
+    z-index: 10;
+    /* 슬라이드 쇼에 다리지 않게 조절 */
+}
+
+#topMenu>li>ul>li>a:hover {
+    text-decoration: underline;
+}
+
+.btns>li>a {
+    display: block;
+    /* 링크 텍스트를 블록으로  */
+    color: white;
+    font-weight: 600;
+    padding: 20px;
+    /* 상 하 좌 우 다 20px씩 패딩준다 */
+}
+
+.top_menu {
+    margin-left: auto;
+    /* 맨 오른쪽으로 붙이고 싶을때 */
+    padding-right: 25px;
+}
+
+.top_menu>i {
+    margin-right: 10px;
+}
+
+.join {
+    margin-right: 25px;
+}
+
+.btns>li>a:hover {
+    text-decoration: underline;
+}
+
+#search:hover {
+    color: white;
+    text-shadow: 0 -1px;
+}
+
+#footer {
+    display: flex;
+    width: 100%;
+    height: 260px;
+    background-color: #282828;
+    position: relative;
+    align-items: center;
+}
+
+#footer {
+    margin-top: 50vh;
+}
+
+.text_box {
+    display: flex;
+    margin-left: auto;
+    width: 420px;
+}
+
+.text_box>p>span {
+    display: flex;
+    color: aliceblue;
+    font-size: 17px;
+}
+
+.my-wrap {
+    background: #ffffff;
+    width: 100%;
+}
+
+.my-box {
+    display: flex;
+    padding: 40px;
+}
+
+.my-box img {
+    width: 205px;
+}
+
+.my-info {
+    padding-left: 40px;
+    font-family: 'Pretendard-Regular';
+
+}
+
+
+
+.my-price {
+    margin-top: auto;
+    margin-left: auto;
+    padding-right: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#footer {
+    margin-top: 10vh;
+}
+
+.my-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 35px 15%;
+    margin-top: 50px;
+    font-family: 'yg-jalnan';
+}
+
+.my-tex {
+    width: 100%;
+
+}
+
+.my-tex>span {
+    font-size: 35px;
+}
+
+.my-body {
+    display: flex;
+    flex-direction: column;
+    padding: 0 15%;
+    font-family: 'Happiness-Sans-Bold';
+}
+
+.my-btn {
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.or-box {
+    position: absolute;
+    bottom: 190px;
+    z-index: 9;
+    width: 100%;
+    height: 200px;
+}
+
+.or-box .or-bt {
+    width: auto;
+    display: flex;
+    justify-content: space-evenly;
+    height: 100%;
+    padding: 0 280px;
+}
+
+.or-box .or-bt .bt1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    justify-content: center;
+    padding-top: 32px;
+
+    width: calc(100% / 3);
+}
+
+.bt1 .txt1 {
+    background: url('../images/z.png') no-repeat center/cover;
+    width: 100%;
+    height: 100%;
+
+}
+
+
+.bt1 .txt2 {
+    background: url('../images/x.png') no-repeat center/cover;
+    width: 100%;
+    height: 100%;
+}
+
+.bt1 .txt3 {
+    background: url('../images/c.png') no-repeat center/cover;
+    width: 100%;
+    height: 100%;
+}
+
+.bt1 .btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.icon1 {
+    background: url('../images/pc.png');
+    width: 64px;
+    height: 64px;
+}
+
+.icon2 {
+    background: url('../images/computer\ time.png');
+    width: 64px;
+    height: 64px;
+}
+
+.icon3 {
+    background: url('../images/monitor.png');
+    width: 64px;
+    height: 64px;
+}
+
+.bt1 .btn p {
+    font-size: 23px;
+    margin: 0;
+    padding-top: 25px;
+}
+
+.bt1 .btn span {
+    font-size: 26px;
+
+}
+
+.my-page {
+    padding-top: 65px;
+}
+
+.title {
+    margin: 0 0 4px;
+    font-size: 24px;
+    font-weight: 600;
+    color: #4e5968;
+}
+
+/*인풋창*/
+.ordersearch {
+    margin: 20px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+#input {
+    width: 500px;
+    height: 30px;
+    margin-right: 10px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 2px solid #000;
+    font-family: 'Happiness-Sans-Bold';
+
+}
+
+#send {
+    width: 40px;
+    height: 40px;
+    margin-left: 10px;
+    font-family: 'Happiness-Sans-Bold';
+    color: #ffffff;
+    background-color: black;
+    border-radius: 5px;
+    border-color: #ffffff;
+    padding: 5px;
+}
+
+#send:hover {
+    color: black;
+    background-color: white;
+}
+
+#input:focus {
+    outline: none;
+    border-bottom: 2px solid #07c;
+}
+
+/* 지도 */
+#map {
+    border: 1px solid black;
+    border-radius: 100%;
+}
+
+/*topimg*/
+.topimg {
+    background: url('../images/정보.jpg') no-repeat center/cover;
+    width: 100%;
+    height: 600px;
+}
+
+.submenu {
+    width: 100%;
+    height: 70px;
+    background: rgb(33, 69, 138);
+    text-align: center;
+}
+
+.container {
+    margin: auto;
+}
+
+.submenu ul {
+    justify-content: center;
+    padding-top: 20px;
+    padding-left: 0px;
+}
+
+.submenu li a {
+    color: white;
+    font-size: 17px;
+    padding: 30px;
+    font-family: 'Happiness-Sans-Bold';
+}
+
+.submenu li a:hover {
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+.slogan {
+    width: 100%;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 100px;
+    font-family: 'Happiness-Sans-Bold';
+    color: white;
+    font-size: 24px;
+    font-weight: 1200;
+    flex-direction: column;
+    letter-spacing: 2px;
+}
+
+.slogan p {
+    font-size: 15px;
+    padding-top: 10px;
+    font-family: 'Pretendard-Regular';
+    letter-spacing: 1px;
+}
+
+@media all and (max-width: 768px) {
+
+    table,
+    thead,
+    tbody,
+    th,
+    td,
+    tr {
+        display: block;
+    }
+
+    th {
+        text-align: right;
+    }
+
+    table {
+        position: relative;
+        padding-bottom: 0;
+        border: none;
+        box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    }
+
+    thead {
+        float: left;
+        white-space: nowrap;
+    }
+
+    tbody {
+        overflow-x: auto;
+        overflow-y: hidden;
+        position: relative;
+        white-space: nowrap;
+    }
+
+    tr {
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    th {
+        border-bottom: 1px solid #a39485;
+    }
+
+    td {
+        border-bottom: 1px solid #e5e5e5;
+    }
+
+
+}

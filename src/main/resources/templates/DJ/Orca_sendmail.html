@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>SendMail</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+     <!-- jquery cdn -->
+     <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <input type="text" id="email" value="이메일" />
+    <input type="button" value="인증번호전송" onclick="sendMail()" />
+    <br/>
+    <input type="text" value="인증번호" id="authcode"/><div id="timerstart"></div>
+    <input type="button" value="인증번호확인" onclick="codechk()"/>
+     <!-- jquery 추가 -->
+     <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+    <script>
+        var timer = null;
+        var isRunning = false;
+        function codechk() {
+            const authcode = document.getElementById("authcode");
+            if(authcode.value !== localStorage.getItem("authkey")) {
+                alert('인증 번호 확인이 필요합니다');
+                authcode.focus();
+                return false;
+            }
+            alert('인증성공');
+        }
+        function sendAuthNum(){
+            var display = $('.time');
+            var leftSec = 10;
+            // 이미 타이머가 작동중이면 중지
+            if (isRunning){
+                clearInterval(timer);
+                display.html("");
+                startTimer(leftSec, display);
+            }else{
+            startTimer(leftSec, display);
+            }
+        }
+
+        function startTimer(count, display) {  
+            var minutes, seconds;
+            timer = setInterval(function () {
+                minutes = parseInt(count / 60, 10);
+                seconds = parseInt(count % 60, 10);
+
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                display.html(minutes + ":" + seconds);
+                document.getElementById("timerstart").innerHTML = minutes+":"+seconds;
+                // 타이머 끝
+                if (--count < 0) {
+                clearInterval(timer);
+                alert("시간초과");
+                display.html("시간초과");
+                $("button").attr("disabled", true);
+                isRunning = false;
+                localStorage.removeItem("authkey");
+                }
+            }, 1000);
+            isRunning = true;
+        }
+
+        function sendMail() {
+            const email = document.getElementById("email");
+            const inputdata = {"sendbtn":"1","email":email.value};
+            $.ajax({
+                url: [[@{/api/orca/vertificationcode.json}]],
+                type: "post",
+                data: JSON.stringify(inputdata),
+                dataType: "json",
+                contentType: "application/json",
+                success: function(result) {
+                    alert('인증코드발송');
+                    localStorage.setItem("authkey",result.verificationcode);
+                    console.log(result.verificationcode);
+                    sendAuthNum();
+                },
+                error: function() {
+                    console.log("error");
+                }
+            })
+        }
+    </script>
+</body>
+</html>

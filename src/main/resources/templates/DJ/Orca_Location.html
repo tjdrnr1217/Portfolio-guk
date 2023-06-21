@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Orca_Location</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+	<link rel='stylesheet' type='text/css' media='screen' th:href='@{/DJ/css/location.css}'>
+	<!-- 아이콘 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<div class="topimg">
+		<header class="he">
+			<div class="cnt">
+					<a th:href="@{/orca/home.do}"><h3>Orca</h3></a>
+					<nav>
+					   <ul id="topMenu">
+							<li><a th:href="@{/orca/history.do}">회사소개</a>
+								<ul> <!-- 순서없는 리스트 -->
+									<li><a th:href="@{/orca/history.do}">연혁</a></li> <!-- li = º 이모양 -->
+									<li><a th:href="@{/orca/organization.do}">조직도</a></li>
+									<li><a th:href="@{/orca/ci.do}">CI</a></li>
+									<li><a th:href="@{/orca/introduce.do}">인사말</a></li>
+								</ul>
+							</li>
+							<li><a th:href="@{/orca/location.do}">해운정보</a>
+								<ul>
+									<li><a th:href="@{/orca/location.do}">배송</a></li>
+									<li><a th:href="@{/orca/company/estimatepage.do}">주문</a></li>
+									<li><a th:href="@{/orca/company/cargoorderlist.do}">조회</a></li>
+								</ul>
+							</li>
+							<li><a th:href="@{/orca/operation.do}">사업분야</a>
+								<ul>
+									<li><a th:href="@{/orca/operation.do}">항만운영</a></li>
+									<li><a th:href="@{/orca/operationequip.do}">항만운영장비</a></li>
+									<li><a th:href="@{/orca/harborloading.do}">항만하역</a></li>
+									<li><a th:href="@{/orca/portauxiliarybusiness.do}">항만부대사업</a></li>
+								</ul>
+							</li>
+							<li><a th:href="@{/orca/schedulelist.do}">운행정보</a></li>
+						</ul>               
+					</nav>
+					<aside class="top_menu">
+						<div th:if="${user == null}" class="a">
+							<ul class="btns">
+								<a href="#" id="search"><i class="fa-solid fa-magnifying-glass fa-lg"></i></a>
+								<li class="login"><a th:href="@{/orca/login.do}">LOGIN</a></li>
+								<li class="join"><a th:href="@{/orca/join.do}">JOIN</a></li>
+								<li class="mypage"><a th:href="@{/orca/company/mypage.do}">MYPAGE</a></li>
+							</ul>
+							</div>
+			
+							<div th:if="${user != null}">
+								<ul class="btns">
+									<li th:text="${user.username}" class="username"></li>
+									<li class="mypage"><a th:href="@{/orca/company/mypage.do}">MYPAGE</a></li>
+									<form th:action="@{/logout.do}" method="post">
+										<li class="logout"><input type="submit" value="LOGOUT" class="logout2" /></li>
+									</form>
+								</ul>
+							</div>
+						</ul>
+					</aside>
+			</div>
+		</header>
+		<div class="slogan">
+			<h2>INFORMATION</h2>
+			<p>안전배송, 간편주문, 신속조회, 언제나 오르카가 함께합니다.</p>
+		</div>
+		</div>
+		<div class="submenu">
+			<div class="container">
+				<ul>
+					<li>
+						<a th:href="@{/orca/location.do}">배송</a>
+						<a th:href="@{/orca/company/estimatepage1.do}">주문</a>
+						<a th:href="@{/orca/company/cargoorderlist.do}">조회</a>
+					</li>
+				</ul>
+		
+			</div>
+		
+		</div>
+	<body>
+		<div class="my-page">
+				<div class="my-header">
+					<div class="my-tex">
+						<span>배송조회</span>
+						<hr>
+					</div>
+				</div>
+					<div class="my-body">          
+						<div class="my-wrap">
+							<h1>주문번호로 배송 조회</h1>
+							<div id="map" style="width: 100%; height: 400px;"></div>
+							<div class="ordersearch">
+								<input type="text" id="input" placeholder="주문번호를 입력해주세요." />
+								<button id="send" onclick="sendMessage()">
+									<div class="ico-box">
+										<i class="fa-solid fa-magnifying-glass fa-lg custom"></i>
+									</div>
+								</button>
+							</div>
+							
+						</div>
+					</div>
+					<img id="shipicon" th:src="@{/DJ/images/free-icon-cargo-ship-870107.png}" style="display: none;">
+    </div>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+	<!-- jquery cdn -->
+	<script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0a91293c73a6a496222351da535f7eb6"></script>
+	<script th:inline="javascript" type="text/javascript">
+		// 고유한 아이디 만들기
+        // const id = [[${userid}]];
+        const id = `ds208_${new Date().getTime()}`;
+		const ordernum = document.getElementById("input");
+		var count = 0;
+
+        // 접속하기 => 내가 전달한 아이디를 map 변수에 보관(2분간)
+		
+        const eventSource = new EventSource([[@{/api/sse/subscribe}]] + `?id=${id}`);
+
+        // callback1
+        eventSource.onopen = (e) => {
+            console.log('onopen',e);
+        }
+        // callback2 메세지 받기
+        eventSource.onmessage = (e) => {
+			console.log(e);
+			const parsejson = JSON.parse(e.data);
+			console.log(parsejson);
+			console.log(parsejson.latitude);
+			console.log(parsejson.longitude);
+			console.log(parsejson.title);
+			mapupdate(parsejson.title,parsejson.latitude,parsejson.longitude);
+        }
+        // callback3
+        eventSource.onerror = (e) => {
+            console.log('onerror',e);
+        }
+        // 메시지 보내기
+        const sendMessage =  () => {
+			if(ordernum.value.length <= 0 ) {
+				Swal.fire('주문번호를 입력하세요.', '','error');
+				return false;
+			}
+            const msg = document.querySelector('#input').value;
+			
+            fetch([[@{/api/sse/publish}]] + `?message=${msg}`); // 메시지 보내기
+        };
+		
+		function mapupdate() {
+			var mapContainer = document.getElementById('map'); // 지도를 표시할 div  
+			const test = 13,
+					mapOption = {
+						center : new kakao.maps.LatLng(arguments[1], arguments[2]), // 지도의 중심좌표
+						level : test
+					// 지도의 확대 레벨
+					};
+
+					var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+					// 마커를 표시할 위치와 title 객체 배열입니다 
+					var positions = {
+						title : arguments[0],
+						latlng : new kakao.maps.LatLng(arguments[1], arguments[2])
+					};
+
+					// 마커 이미지의 이미지 주소입니다.
+					var imageSrc = document.getElementById('shipicon').src
+					//<a href="https://www.flaticon.com/kr/free-icons/" title="배 아이콘">배 아이콘  제작자: Freepik - Flaticon</a>
+					//https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png
+					
+
+					// 마커 이미지의 이미지 크기 입니다
+					var imageSize = new kakao.maps.Size(24, 24);
+
+					// 마커 이미지를 생성합니다    
+					var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+
+					// 마커를 생성합니다
+					var marker = new kakao.maps.Marker({
+						map : map, // 마커를 표시할 지도
+						position : positions.latlng, // 마커를 표시할 위치
+						title : positions.title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+						image : markerImage
+					// 마커 이미지 
+					});
+					
+					setTimeout(sendMessage,3000);
+					
+		}
+
+		// function updatedata() {
+        //     const inputdata = {"sname":localStorage.getItem("sn"),"point":localStorage.getItem("pt")};
+		// 	$.ajax({
+        //         url: "http://127.0.0.1:9090/ROOT/api/orca/location.json",
+        //         type: "post",
+        //         data: JSON.stringify(inputdata),
+        //         dataType: "json",
+        //         contentType: "application/json",
+        //         success: function(result) {
+        //             console.log(result);
+		// 			mapupdate(result.title,result.latitude,result.longitude);
+		// 			localStorage.setItem("pt",result.next);
+        //         },
+        //         error: function() {
+        //             console.log("error");
+        //         }
+        //     })
+		// }
+		// const inputdata = {"sname":sname.value,"point":dport.value};
+			// localStorage.setItem("sn",sname.value);
+			// localStorage.setItem("pt",dport.value);
+			// $.ajax({
+            //     url: "http://127.0.0.1:9090/ROOT/api/orca/location.json",
+            //     type: "post",
+            //     data: JSON.stringify(inputdata),
+            //     dataType: "json",
+            //     contentType: "application/json",
+            //     success: function(result) {
+            //         console.log(result);
+			// 		mapupdate(result.title,result.latitude,result.longitude);
+			// 		timer = setInterval(updatedata, 2000);
+            //     },
+            //     error: function() {
+            //         console.log("error");
+            //     }
+            // })
+	</script>
+</body>
+<footer id="footer">
+	<div class="text_box">
+		<p>
+			<span>이메일 : adsfadf@naver.com</span><br>
+			<span>Address : 부산 남구 신선로 365 부경대학교 </span><br>
+			<span>call : 000-0000-0000</span>
+		</p>
+	</div>
+</div>
+</footer>
+</html>
+<script>
+    
+	// 스크롤시 헤더 색상 변경
+	$(window).on('scroll',function(){
+				if($(window).scrollTop()){
+					$('header').addClass('active');
+				}else{
+					$('header').removeClass('active');
+				}
+			});
+</script>

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>orca</title>
+    <!-- 아이콘 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+    <link rel='stylesheet' type='text/css' media='screen' th:href='@{/JH/css/shiplist.css}'>
+
+     <!-- jquery cdn -->
+     <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+</head>
+<div class="topimg">
+    <header class="he">
+        <div class="cnt">
+                <a th:href="@{/orca/admin/home.do}"><h3>Orca</h3></a>
+                <nav>
+                   <ul id="topMenu">
+                        <li><a th:href="@{/orca/history.do}">회사소개</a>
+                            <ul> <!-- 순서없는 리스트 -->
+                                <li><a th:href="@{/orca/history.do}">연혁</a></li> <!-- li = º 이모양 -->
+                                <li><a th:href="@{/orca/organization.do}">조직도</a></li>
+                                <li><a th:href="@{/orca/ci.do}">CI</a></li>
+                                <li><a th:href="@{/orca/introduce.do}">인사말</a></li>
+                            </ul>
+                        </li>
+                        <li><a th:href="@{/orca/location.do}">해운정보</a>
+                            <ul>
+                                <li><a th:href="@{/orca/location.do}">배송</a></li>
+                                <li><a th:href="@{/orca/company/estimatepage.do}">주문</a></li>
+                                <li><a th:href="@{/orca/company/cargoorderlist.do}">조회</a></li>
+                            </ul>
+                        </li>
+                        <li><a th:href="@{/orca/operation.do}">사업분야</a>
+                            <ul>
+                                <li><a th:href="@{/orca/operation.do}">항만운영</a></li>
+                                <li><a th:href="@{/orca/operationequip.do}">항만운영장비</a></li>
+                                <li><a th:href="@{/orca/harborloading.do}">항만하역</a></li>
+                                <li><a th:href="@{/orca/portauxiliarybusiness.do}">항만부대사업</a></li>
+                            </ul>
+                        </li>
+                        <li><a th:href="@{/orca/admin/schedule.do}">운행정보</a></li>
+                    </ul>               
+                </nav>
+    
+                <aside class="top_menu">
+                    <div th:if="${user == null}" class="a">
+                        <ul class="btns">
+                            <a href="#" id="search"><i class="fa-solid fa-magnifying-glass fa-lg"></i></a>
+                            <li class="login"><a th:href="@{/orca/login.do}">LOGIN</a></li>
+                            <li class="join"><a th:href="@{/orca/join.do}">JOIN</a></li>
+                        </ul>
+                        </div>
+        
+                        <div th:if="${user != null}">
+                            <ul class="btns">
+                                <li th:text="${user.username}" class="username"></li>
+                                <form th:action="@{/logout.do}" method="post">
+                                    <li class="logout"><input type="submit" value="LOGOUT" class="logout2" /></li>
+                                </form>
+                            </ul>
+                        </div>
+                    </ul>
+                </aside>
+
+        </div>
+    </header>
+    <div class="slogan">
+        <h2>TRAFFIC</h2>
+        <p>부산의 자부심. 바다가 있는 곳, 언제나 오르카가 있습니다.</p>
+    
+    </div>
+    </div>
+    <div class="submenu">
+        <div class="container">
+            <ul>
+                <li>
+                    <a th:href="@{/orca/admin/shiplist.do}">선박목록</a>
+                </li>
+            </ul>
+    
+        </div>
+    
+    </div>
+</header>
+<body>
+    <div class="my-page">
+        <div class="my-header">
+            <div class="my-tex">
+                <i class="fa-solid fa-file-circle-plus fa-2xl"></i>
+                <span>선박 등록</span>
+            </div>
+        </div>
+        <form th:action="@{/orca/admin/shiplist.do}" method="post" id="form">
+            <div class="or-box">              
+                <div class="or-table">        
+                    <div class="ot">
+                            <table class="table table-hover">
+                                <thead class="ot1">
+                                    <tr>
+                                        <th>선박 등록번호</th>
+                                        <th>선박 이름</th>
+                                        <th>선박 종류</th>
+                                        <th>선박 무게</th>
+                                        <th>최대 화물적재량</th>
+                                        <th>현재 위치</th>		
+                                    </tr>
+                                </thead>
+                            <tbody class="ot1 ipt-box">
+                                <tr>
+                                    <td><input type="text" name="srn" id="srn"/></td>
+                                    <td><input type="text" name="sname" id="sname"/></td>
+                                    <td>
+                                        <select name="type" id="type">
+                                        <option value="화물선">화물선</option>
+                                        <option value="부선">부선</option>
+                                        <option value="유조선">유조선</option>
+                                        <option value="예인선">예인선</option>
+                                        </select>
+                                    </td>
+                                    <td><input type="number" name="shipweight" id="shipweight"/></td>
+                                    <td><input type="number" name="maxcargo" id="maxcargo"/></td>
+                                    <td><input type="text" name="location.point" id="location.point"/></td>  
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="ok">
+                <div class="btn-ok">
+                    <input type="button" value="추가" class="insertbutton" onclick="insertAction()"/> 
+                </div>
+            </div> 
+        </form> 
+        <form th:action="@{/orca/admin/shiplistdelete.do}" method="post" id="form2">
+        <div class="my-header">
+            <div class="my-tex">
+                <i class="fa-solid fa-file-circle-exclamation fa-2xl"></i>
+                <span>현재 선박 목록</span>
+            </div>
+        </div>
+        <div class="or-box">              
+            <div class="or-table">        
+                <div class="ot">
+                    <table class="table table-hover">
+                        <thead class="ot1">
+                            <tr>
+                                <th>선택</th>
+                                <th>선박 등록번호</th>
+                                <th>선박 이름</th>
+                                <th>선박 종류</th>
+                                <th>선박 무게</th>		
+                                <th>최대 화물적재량</th>
+                                <th>현재 위치</th>
+                                <th>선박 상태</th>		
+                            </tr>
+                        </thead>
+                        <tbody class="ot1">
+                            <tr th:each="list : ${list}">
+                                <td><input type="radio" name="srn" th:value="${list.srn}"></td>
+                                <td th:text="${list.srn}"></td>
+                                <td th:text="${list.sname}"></td>
+                                <td th:text="${list.type}"></td>
+                                <td th:text="${list.shipweight}"></td>         
+                                <td th:text="${list.maxcargo}"></td>
+                                <td th:text="${list.location.point}"></td>
+                                <td th:text="${list.state}"></td>         
+                            </tr>
+                            </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+        </div> 
+        <div id="pagenation">
+            <th:block th:each="num : ${#numbers.sequence(1, pages)}" >
+                <a th:href="@{/orca/admin/shiplist.do(page=${num})}" th:text="${num}"></a>
+            </th:block>
+        </div>
+    <div class="ok">
+        <div class="btn-ok">
+            <input type="button" value="삭제" class="insertbutton" onclick="deleteAction()"/> 
+        </div>
+    </div> 
+</form> 
+    </div>
+</body>
+<footer id="footer">
+    <div class="text_box">
+        <p>
+            <span>이메일 : adsfadf@naver.com</span><br>
+            <span>Address : 부산 남구 신선로 365 부경대학교 </span><br>
+            <span>call : 000-0000-0000</span>
+        </p>
+    </div>
+</div>
+</footer>
+</html>
+
+<script>
+    // 스크롤시 헤더 색상 변경
+    $(window).on('scroll',function(){
+                if($(window).scrollTop()){
+                    $('header').addClass('active');
+                }else{
+                    $('header').removeClass('active');
+                }
+            });
+</script>
+<script>
+    function insertAction(){
+        const srn = document.getElementById("srn");
+        const sname = document.getElementById("sname");
+        const shipweight = document.getElementById("shipweight");
+        const maxcargo = document.getElementById("maxcargo");
+        const point = document.getElementById("location.point");
+        const form = document.getElementById("form");
+        const form2 = document.getElementById("form2");
+
+        if(srn.value.length <= 0){
+            alert('선박 등록번호를 입력하세요');
+            srn.focus();
+            return;
+        }
+
+        if(sname.value.length <= 0){
+            alert('선박 이름을 입력하세요');
+            sname.focus();
+            return;
+        }
+
+        if(shipweight.value.length <= 0){
+            alert('선박무게를 입력하세요');
+            shipweight.focus();
+            return;
+        }
+
+        if(maxcargo.value.length <= 0){
+            alert('최대 화물적재량을 입력하세요');
+            maxcargo.focus();
+            return;
+        }
+
+        if(point.value.length <= 0){
+            alert('현재 위치를 입력하세요');
+            point.focus();
+            return;
+        }
+        form.submit();
+    }
+
+    function deleteAction(){
+        if($("input[name=srn]:radio:checked").length < 1){
+                alert('운행정보를 선택해주세요');
+                return;
+            }
+        form2.submit();
+    }
+</script>

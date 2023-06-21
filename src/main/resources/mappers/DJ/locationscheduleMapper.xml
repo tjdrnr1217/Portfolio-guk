@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.finalproject.DJ.mapper.OrcaLocationScheduleMapper">
+
+    <update id="shipLocationUpdate" parameterType="com.finalproject.DJ.dto.Ship">
+        UPDATE ship SET point=#{point} WHERE srn=#{srn}
+    </update>
+
+    <update id="shipStateUpdate" parameterType="map">
+        UPDATE ship SET state=#{state} WHERE srn=#{srn}
+    </update>
+
+    <select id="shipLocationSelect" parameterType="string" resultType="com.finalproject.DJ.dto.Location">
+        SELECT * FROM LOCATION WHERE point = #{point}
+    </select>
+    
+    <select id="shipSelectOne" parameterType="string" resultType="com.finalproject.DJ.dto.Ship">
+        SELECT * FROM SHIP WHERE srn = #{srn} 
+    </select>
+    
+    <select id="shipSelectList" resultType="com.finalproject.DJ.dto.Ship">
+        SELECT * FROM SHIP
+    </select>
+
+    
+</mapper>

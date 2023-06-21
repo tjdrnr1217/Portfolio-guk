@@ -1,0 +1,460 @@
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'yg-jalnan';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Happiness-Sans-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2205@1.0/Happiness-Sans-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+body
+{
+margin: 0;
+overflow-x: hidden
+}
+
+
+
+header {
+    width: 100%;
+    height: 65px;
+    padding: 20px 0;
+    position: fixed;
+    /* 스크롤에도 고정 */
+    z-index: 999;
+    transition: .3s;
+}
+
+header.active {
+    background: rgba(0, 0, 0, 0.8);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.16);
+    transition: .3s;
+}
+
+header.active #topMenu>li>a {
+    color: white;
+}
+
+header.active .btns>li>a {
+    color: white;
+}
+
+
+
+h3
+{
+font-size: 55px;
+margin: 0;
+color: #07c;
+height: 100%;
+padding-right: 50px;
+padding-left: 45px;     
+}
+
+li
+{
+list-style: none;
+}
+
+.cnt
+{
+display: flex;
+align-items: center;
+width: 100%;
+
+}
+
+ul
+{
+display: flex; /* 가로정렬 */
+height: 100%;
+margin: 0;
+align-items: flex-end;
+justify-content: space-between; /* 일정한 공백으로 배치 */
+align-items: baseline;
+}
+
+li:nth-child(4) /* 2n은 짝수 2n-1은 홀수 */
+{
+padding-right: 0;
+}
+
+a
+{
+text-decoration: none;
+}
+
+a:hover
+{
+color: white;
+}
+
+
+#topMenu 
+{
+height: 60px;
+}
+
+/* 서브메뉴를 absolute로 만들기 위해 부모 요소를 relaticve로 지정 */
+/* display: flex;align-items: left;justify-content: left; */
+
+#topMenu>li 
+{
+float: left;
+position: relative;
+width: 150px;
+/* padding-right: 65px; */
+font-size: 17px;
+/* width: 219px; */
+margin: 0 32px;
+text-align: center;
+}
+
+#topMenu>li>a {
+display: block;
+/* 링크 텍스트를 블록으로  */
+color: white;
+font-weight: 600;
+padding: 20px;
+}
+
+#topMenu>li>a>span {
+font-size: 0.5em;
+}
+
+#topMenu>li:hover >a{
+color:#0077cc;
+}
+
+
+#topMenu>li>ul 
+{
+display: none;
+width: 150px;
+background-color: #0077cc;
+left: 0%;
+top: 15px;
+/* left: 20px; */
+padding-left: 0;
+position: inherit;
+border-radius: 20px;
+padding:20px 0;
+box-shadow: 3px 3px 10px rgba(0,0,0,0.16);
+}
+
+#topMenu>li>ul>li
+{
+/* padding: 10px 10px 10px 30px; 물어볼거 */
+padding: 10px 0;
+}
+
+#topMenu>li>ul>li>a
+{
+font-size: 16px;
+/* padding: 10px; */
+color: #fff;
+font-weight:500;
+}
+
+#topMenu>li:hover>ul {
+/* hover가 마우스 올릴시 */
+display: block;
+/* 메인 메뉴 항목 위로 오버하면 서브메뉴 표시 */
+z-index: 10;
+/* 슬라이드 쇼에 다리지 않게 조절 */
+}
+
+#topMenu>li>ul>li>a:hover {
+text-decoration: underline;
+}
+
+.btns>li>a
+{
+display: block;
+/* 링크 텍스트를 블록으로  */
+color: white;
+font-weight: 600;
+padding: 20px; 
+/* 상 하 좌 우 다 20px씩 패딩준다 */
+}
+
+.top_menu
+{
+margin-left: auto; /* 맨 오른쪽으로 붙이고 싶을때 */
+padding-right: 25px;
+}
+
+.top_menu>
+
+i
+{
+    margin-right: 10px;
+}
+
+.join
+{
+     margin-right: 25px;
+}
+
+.btns>li>a:hover {
+    text-decoration: underline;
+}
+#search:hover
+{
+    color: #000;
+    text-shadow: 0 -1px;
+}
+#blue
+{
+    display: flex;
+    width: 100%;
+    height: 500px;
+    background-color: #07c;
+    align-items: center;
+
+}
+
+#inline-text{
+    display: inline-block;
+    color: rgb(190, 185, 185);
+    font-family: 'Pretendard-Regular';
+    width: 400px;
+    text-align: center;
+    margin-bottom: 300px;
+}
+
+.blue_box{
+    margin-left: 340px;
+}
+
+#footer
+{
+    display: flex;
+    width: 100%;
+    height: 260px;
+    background-color: #282828;
+    position: relative;
+    align-items: center;
+
+}
+
+.text_box
+{   
+    display: flex;
+    margin-left: auto;
+    width: 420px;
+}
+
+.text_box>p>span
+{
+    display: flex;
+    color: aliceblue;
+    font-size: 17px;
+}
+
+.my-header
+{
+    display: flex;
+    justify-content: space-between;
+    padding: 35px 15%;
+}
+
+.my-tex
+{
+    width: 85%;
+    margin-bottom: 30px;
+    
+}
+
+.my-tex>span
+{
+    font-size: 35px;
+}
+.joincnt button
+{
+    margin-left: 25px;
+    width: 7%;
+    border-radius: 20px;
+    background-color: #0d99ff;
+    font-family: 'Pretendard-Regular';
+    border: #e6e6e6;
+    font-size: 13px;
+    color: white;
+}
+.join_row1
+{
+    margin-top: -20px;
+    margin-left: 300px;
+    padding-bottom: 60px;
+}
+
+.join_row1 > label
+{
+    display:block;
+    width: 130px;
+    font-family: 'yg-jalnan';
+}
+#transit{
+    width: 105px;
+}
+#transit2{
+    color: #07c;
+}
+
+.join_row1 
+{
+    display:flex;
+}
+
+.joincnt
+{
+    margin-left: 25%;
+}
+
+.my-page
+{
+    /* margin-left: 5%; */
+    width: 100%;
+  
+}
+
+hr
+{
+    margin-top: 30px;
+}
+
+.my-page
+{
+    padding-top: 65px;
+    padding-bottom: 100px;
+}
+
+
+.joincnt input[type=button]
+{
+    margin-left: 25px;
+    width: 7%;
+    border-radius: 20px;
+    background-color: #0d99ff;
+    font-family: 'Pretendard-Regular';
+    border: #e6e6e6;
+    font-size: 13px;
+    color: white;
+}
+
+.joincnt input[type=button]:hover
+{
+    color: black;
+}
+
+#spanstyle{
+    text-align: left;
+    font-size: 30px;
+    font-weight: bold;
+}
+/*topimg 수정*/
+.topimg {
+    background: url('../images/business.jpg') no-repeat center/cover;
+    width: 100%;
+    height: 600px;
+}
+
+.submenu {
+    width: 100%;
+    height: 70px;
+    background: rgb(33, 69, 138);
+    text-align: center;
+}
+
+.container {
+    margin: auto;
+}
+
+.submenu ul {
+    justify-content: center;
+    padding-top: 20px;
+    padding-left: 0px;
+}
+
+.submenu li a {
+    color: white;
+    font-size: 17px;
+    padding: 30px;
+    font-family: 'Happiness-Sans-Bold';
+}
+
+.submenu li a:hover {
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+.slogan {
+    width: 100%;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 100px;
+    font-family: 'Happiness-Sans-Bold';
+    color: white;
+    font-size: 24px;
+    font-weight: 1200;
+    flex-direction: column;
+    letter-spacing: 2px;
+}
+
+.slogan p {
+    font-size: 15px;
+    padding-top: 10px;
+    font-family: 'Pretendard-Regular';
+    letter-spacing: 1px;
+}
+.logout2 {
+    background-color: transparent;
+    border: 0;
+    display: block;
+    color: #fff;
+    font-weight: 600;
+    padding: 20px;
+}
+
+.logout2:hover {
+    text-decoration: underline;
+}
+
+.username {
+    display: block;
+    color: #fff;
+    font-weight: 600;
+    padding: 20px;
+}
+
+header.active .username {
+    color: #fff;
+}
+
+header.active .logout2 {
+    color: #fff;
+}
+
+
+
+
+
+
+
+
+
+

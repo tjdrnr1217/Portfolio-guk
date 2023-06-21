@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>orca</title>
+    <!-- 아이콘 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel='stylesheet' type='text/css' media='screen' th:href='@{/SG/css/login.css}'>
+
+    
+     <!-- jquery cdn -->
+     <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+    
+</head>
+<header class="he">
+    <div class="cnt">
+            <a th:href="@{/orca/home.do}"><h3>Orca</h3></a>
+            <nav>
+               <ul id="topMenu">
+                    <li><a th:href="@{/orca/history.do}">회사소개</a>
+                        <ul> <!-- 순서없는 리스트 -->
+                            <li><a th:href="@{/orca/history.do}">연혁</a></li> <!-- li = º 이모양 -->
+                            <li><a th:href="@{/orca/organization.do}">조직도</a></li>
+                            <li><a th:href="@{/orca/ci.do}">CI</a></li>
+                            <li><a th:href="@{/orca/introduce.do}">인사말</a></li>
+                        </ul>
+                    </li>
+                    <li><a th:href="@{/orca/location.do}">해운정보</a>
+                        <ul>
+                            <li><a th:href="@{/orca/location.do}">배송</a></li>
+                            <li><a th:href="@{/orca/company/estimatepage.do}">주문</a></li>
+                            <li><a th:href="@{/orca/company/cargoorderlist.do}">조회</a></li>
+                        </ul>
+                    </li>
+                    <li><a th:href="@{/orca/operation.do}">사업분야</a>
+                        <ul>
+                            <li><a th:href="@{/orca/operation.do}">항만운영</a></li>
+                            <li><a th:href="@{/orca/operationequip.do}">항만운영장비</a></li>
+                            <li><a th:href="@{/orca/harborloading.do}">항만하역</a></li>
+                            <li><a th:href="@{/orca/portauxiliarybusiness.do}">항만부대사업</a></li>
+                        </ul>
+                    </li>
+                    <li><a th:href="@{/orca/admin/schedule.do}">운행정보</a></li>
+                </ul>               
+            </nav>
+            <aside class="top_menu">           
+                <ul class="btns">
+                   <a href="#" id="search"><i class="fa-solid fa-magnifying-glass fa-lg"></i></a>
+                    <li class="login"><a th:href="@{/orca/login.do}">LOGIN</a></li>
+                    <li class="join"><a th:href="@{/orca/join.do}">JOIN</a></li>
+                    <li class="menu"><a th:href="@{/orca/company/mypage.do}">MYPAGE</a></li>
+                </ul>
+            </aside>
+    </div>
+</header>
+<body>
+    <div class="my-page">
+        <div class="logo">
+            <h3>Orca</h3>
+        </div>
+        <div class="container">
+            <h2>LOGIN</h2>
+            <form th:action="@{/orca/loginaction.do}" method="post" id="form">
+              <label for="username">아이디</label>
+              <input type="text"name="id" placeholder="아이디를 입력하세요." required>
+              
+              <label for="password">비밀번호</label>
+              <input type="password"name="password" placeholder="비밀번호를 입력하세요." required>
+              
+              <input type="button" value="로그인" class="loginbutton" onclick="loginAction()"/>
+            </form>
+        </div>
+        <div class="container2">
+            <ul>
+                <li><a th:href="@{/orca/findpw.do}">비밀번호 찾기</a></li>
+                <li><a th:href="@{/orca/findid.do}">아이디 찾기</a></li>
+                <li><a th:href="@{/orca/join.do}">회원가입</a></li>
+            </ul>
+        </div>
+    </div>
+</body>
+<footer id="footer">
+    <div class="text_box">
+        <p>
+            <span>이메일 : adsfadf@naver.com</span><br>
+            <span>Address : 부산 남구 신선로 365 부경대학교 </span><br>
+            <span>call : 000-0000-0000</span>
+        </p>
+    </div>
+</div>
+</footer>
+</html>
+
+<script>
+    // 스크롤시 헤더 색상 변경
+    $(window).on('scroll',function(){
+                if($(window).scrollTop()){
+                    $('header').addClass('active');
+                }else{
+                    $('header').removeClass('active');
+                }
+            });
+</script>
+
+<script>
+    function loginAction(){
+        const id = document.getElementsByName("id");
+        const password = document.getElementsByName("password");
+
+        if(id[0].value.length<=0){
+            alert('아이디를 입력하세요.');
+            id.focus();
+            return false;
+        }
+
+        if(password[0].value.length<=0){
+            alert('암호를 입력하세요.');
+            pw.focus();
+            return false;
+        }
+
+        document.getElementById("form").submit();
+    }
+</script>

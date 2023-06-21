@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>OrcaEstimate</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <!-- 아이콘 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <link rel='stylesheet' type='text/css' media='screen' th:href='@{/JH/css/estimatetotalpage.css}'>
+     <!-- jquery cdn -->
+     <script src="https://code.jquery.com/jquery-3.6.4.js" ></script>
+    </head>
+    <div class="topimg">
+        <header class="he">
+            <div class="cnt">
+                    <a th:href="@{/orca/home.do}"><h3>Orca</h3></a>
+                    <nav>
+                       <ul id="topMenu">
+                            <li><a th:href="@{/orca/history.do}">회사소개</a>
+                                <ul> <!-- 순서없는 리스트 -->
+                                    <li><a th:href="@{/orca/history.do}">연혁</a></li> <!-- li = º 이모양 -->
+                                    <li><a th:href="@{/orca/organization.do}">조직도</a></li>
+                                    <li><a th:href="@{/orca/ci.do}">CI</a></li>
+                                    <li><a th:href="@{/orca/introduce.do}">인사말</a></li>
+                                </ul>
+                            </li>
+                            <li><a th:href="@{/orca/location.do}">해운정보</a>
+                                <ul>
+                                    <li><a th:href="@{/orca/location.do}">배송</a></li>
+                                    <li><a th:href="@{/orca/company/estimatepage.do}">주문</a></li>
+                                    <li><a th:href="@{/orca/company/cargoorderlist.do}">조회</a></li>
+                                </ul>
+                            </li>
+                            <li><a th:href="@{/orca/operation.do}">사업분야</a>
+                                <ul>
+                                    <li><a th:href="@{/orca/operation.do}">항만운영</a></li>
+                                    <li><a th:href="@{/orca/operationequip.do}">항만운영장비</a></li>
+                                    <li><a th:href="@{/orca/harborloading.do}">항만하역</a></li>
+                                    <li><a th:href="@{/orca/portauxiliarybusiness.do}">항만부대사업</a></li>
+                                </ul>
+                            </li>
+                            <li><a th:href="@{/orca/schedulelist.do}">운행정보</a></li>
+                        </ul>               
+                    </nav>
+        
+                   
+                    <aside class="top_menu">
+                        <div th:if="${user == null}" class="a">
+                            <ul class="btns">
+                                <a href="#" id="search"><i class="fa-solid fa-magnifying-glass fa-lg"></i></a>
+                                <li class="login"><a th:href="@{/orca/login.do}">LOGIN</a></li>
+                                <li class="join"><a th:href="@{/orca/join.do}">JOIN</a></li>
+                                <li class="mypage"><a th:href="@{/orca/company/mypage.do}">MYPAGE</a></li>
+                            </ul>
+                            </div>
+            
+                            <div th:if="${user != null}">
+                                <ul class="btns">
+                                    <li th:text="${user.username}" class="username"></li>
+                                    <li class="mypage"><a th:href="@{/orca/company/mypage.do}">MYPAGE</a></li>
+                                    <form th:action="@{/logout.do}" method="post">
+                                        <li class="logout"><input type="submit" value="LOGOUT" class="logout2" /></li>
+                                    </form>
+                                </ul>
+                            </div>
+                        </ul>
+                    </aside>
+            </div>
+        </header>
+        <div class="slogan">
+            <h2>INFORMATION</h2>
+            <p>안전배송, 간편주문, 신속조회, 언제나 오르카가 함께합니다.</p>
+        
+        </div>
+        </div>
+        <div class="submenu">
+            <div class="container">
+                <ul>
+                    <li>
+                        <a th:href="@{/orca/location.do}">배송</a>
+						<a th:href="@{/orca/company/estimatepage1.do}">주문</a>
+						<a th:href="@{/orca/company/cargoorderlist.do}">조회</a>
+                    </li>
+                </ul>
+        
+            </div>
+        
+        </div>
+    </header>
+    <body>
+        <div>
+            <div class="my-page">
+               <form action="estimatetotalpage.do" method="post" id="form">
+                   <div class="my-header">
+                       <div class="my-tex">
+                           <span>최종 가견적서</span>
+                           <hr>
+                       </div>
+                   </div>
+                   <div class="jcnt">
+                       <div class="joincnt">
+                            <div class="join_row1">
+                                <label for="id" id="id">주문아이디</label>
+                                <h4 th:text="${id}"></h4>
+                                <input type="hidden" th:value="${id}" name="id" />
+                            </div>
+
+                            <div class="join_row1">
+                                <label for="cargotype" id="cargotype" >화물분류</label>
+                                <h4 th:text="${cargotype}" name="cargotype"></h4>
+                                <input type="hidden" th:value="${cargotype}" name="cargotype" />
+                            </div>
+
+                            <div class="join_row1">
+                                <label for="weight" id="cargoweight" >화물무게</label>
+                                <h4 th:text="${cargoweight}" name="cargoweight"></h4><h4>ton</h4>
+                                <input type="hidden" th:value="${cargoweight}" name="cargoweight" />
+                            </div>
+
+                            <div class="join_row1">
+                                <label for="keepingperiod" id="keepingperiod" >화물보관기간</label>
+                                <h4 th:text="${keepingperiod}" name="keepingperiod"></h4><h4>일</h4>
+                                <input type="hidden" th:value="${keepingperiod}" name="keepingperiod" />
+                            </div>
+
+                            <div class="join_row1">
+                                <label for="locationtype" id="locationtype" >최종배송지점</label>
+                                <h4 th:text="${locationtype}" name="locationtype"></h4>
+                                <input type="hidden" th:value="${locationtype}" name="locationtype" />
+                            </div>
+
+                            <div class="join_row2">
+                                <label for="address">선박운행정보</label>
+                                <table class="scheduletable">
+                                    <thead>
+                                        <tr>
+                                            <th>운행번호</th>
+                                            <th>출발항</th>
+                                            <th>도착항</th>
+                                            <th>출발일</th>
+                                            <th>도착일</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="obj : ${list}">
+                                            <td th:text="${obj.scheduleno}"></td>
+                                            <td th:text="${obj.departureport}"></td>
+                                            <td th:text="${obj.arrivalport}"></td>
+                                            <td th:text="${obj.departuredate}"></td>
+                                            <td th:text="${obj.arrivaldate}"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <hr class="split"/>
+                            <div class="join_row1">
+                                <label for="portfacfare" id="portfacfare">항만시설 사용료</label>
+                                <input type="hidden" th:value="${portfacfare}" name="portfacfare" />
+                                <div>
+                                    <div class="portfacfare"><h4 data-th-text="${#numbers.formatInteger(portfacfare,1,'COMMA') + '원'}"></h4></div>
+                                    <h5> ※항구 이용 기본료와 창고 및 야적장 사용료의 합계 금액입니다.</h5>
+                                </div>
+                            </div>
+                            <div class="join_row1">
+                                <label for="cargofacfare" id="cargofacfare">화물료</label>
+                                <input type="hidden" th:value="${cargofacfare}" name="cargofacfare" />
+                                <div>
+                                    <div class="cargofacfare"><h4 data-th-text="${#numbers.formatInteger(cargofacfare,1,'COMMA') + '원'}"></h4></div>
+                                    <h5> ※화물 입출항료와 화물 체화료의 합계 금액입니다.</h5>
+                                    <br />
+                                    <br />
+                                </div>
+                            </div>
+
+                            <div class="join_row1">
+                                <label for="totalfare" id="totalfare">합계 가견적금액</label>
+                                <input type="hidden" th:value="${totalfare}" name="totalfare" />
+                                <div>
+                                    <div class="portfare"><h4 data-th-text="${#numbers.formatInteger(totalfare,1,'COMMA') + '원'}"></h4></div>
+                                    <h5> ※선박료를 제외한 화물료와 항만시설 사용료의 합계 금액입니다.</h5>
+                                </div>
+                            </div>
+                            <div>
+                                <input type="hidden" name="state" value="대기" />
+                                <input type="hidden" name="destination.destinationname" th:value="${locationtype}" />
+                                <input type="hidden" name="schedule.scheduleno" th:value="${scheduleno}" />
+                                <input type="hidden" name="client.id" th:value="${id}" />
+                            </div>
+                        </div>
+                   </div>
+                   <div class="ok">
+                       <div class="btn-ok">
+                           <input type="button" value="주문하기" class="btn btn-primary" th:onclick="estimatetotalAction()" />
+                       </div>
+                   </div>
+                </form>
+            </div>
+        </div>
+    </footer>
+    </html>
+    <script th:inline="javascript" type="text/javascript">
+        function estimatetotalAction(){
+            alert('주문이 완료되었습니다.');
+
+            const form = document.getElementById('form');
+            form.submit();
+        }
+    </script>
+    <script>
+    
+        // 스크롤시 헤더 색상 변경
+        $(window).on('scroll',function(){
+                    if($(window).scrollTop()){
+                        $('header').addClass('active');
+                    }else{
+                        $('header').removeClass('active');
+                    }
+                });
+    </script>

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>OrcaEstimate</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <!-- 아이콘 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <link rel='stylesheet' type='text/css' media='screen' th:href='@{/JH/css/estimatepage2.css}'>
+     <!-- jquery cdn -->
+     <script src="https://code.jquery.com/jquery-3.6.4.js" ></script>
+    </head>
+    <div class="topimg">
+        <header class="he">
+            <div class="cnt">
+                    <a th:href="@{/orca/home.do}"><h3>Orca</h3></a>
+                    <nav>
+                       <ul id="topMenu">
+                            <li><a th:href="@{/orca/history.do}">회사소개</a>
+                                <ul> <!-- 순서없는 리스트 -->
+                                    <li><a th:href="@{/orca/history.do}">연혁</a></li> <!-- li = º 이모양 -->
+                                    <li><a th:href="@{/orca/organization.do}">조직도</a></li>
+                                    <li><a th:href="@{/orca/ci.do}">CI</a></li>
+                                    <li><a th:href="@{/orca/introduce.do}">인사말</a></li>
+                                </ul>
+                            </li>
+                            <li><a th:href="@{/orca/location.do}">해운정보</a>
+                                <ul>
+                                    <li><a th:href="@{/orca/location.do}">배송</a></li>
+                                    <li><a th:href="@{/orca/company/estimatepage.do}">주문</a></li>
+                                    <li><a th:href="@{/orca/company/cargoorderlist.do}">조회</a></li>
+                                </ul>
+                            </li>
+                            <li><a th:href="@{/orca/operation.do}">사업분야</a>
+                                <ul>
+                                    <li><a th:href="@{/orca/operation.do}">항만운영</a></li>
+                                    <li><a th:href="@{/orca/operationequip.do}">항만운영장비</a></li>
+                                    <li><a th:href="@{/orca/harborloading.do}">항만하역</a></li>
+                                    <li><a th:href="@{/orca/portauxiliarybusiness.do}">항만부대사업</a></li>
+                                </ul>
+                            </li>
+                            <li><a th:href="@{/orca/schedulelist.do}">운행정보</a></li>
+                        </ul>               
+                    </nav>
+        
+                   
+                    <aside class="top_menu">
+                        <div th:if="${user == null}" class="a">
+                            <ul class="btns">
+                                <a href="#" id="search"><i class="fa-solid fa-magnifying-glass fa-lg"></i></a>
+                                <li class="login"><a th:href="@{/orca/login.do}">LOGIN</a></li>
+                                <li class="join"><a th:href="@{/orca/join.do}">JOIN</a></li>
+                                <li class="mypage"><a th:href="@{/orca/company/mypage.do}">MYPAGE</a></li>
+                            </ul>
+                            </div>
+            
+                            <div th:if="${user != null}">
+                                <ul class="btns">
+                                    <li th:text="${user.username}" class="username"></li>
+                                    <li class="mypage"><a th:href="@{/orca/company/mypage.do}">MYPAGE</a></li>
+                                    <form th:action="@{/logout.do}" method="post">
+                                        <li class="logout"><input type="submit" value="LOGOUT" class="logout2" /></li>
+                                    </form>
+                                </ul>
+                            </div>
+                        </ul>
+                    </aside>
+            </div>
+        </header>
+        <div class="slogan">
+            <h2>INFORMATION</h2>
+            <p>안전배송, 간편주문, 신속조회, 언제나 오르카가 함께합니다.</p>
+        
+        </div>
+        </div>
+        <div class="submenu">
+            <div class="container">
+                <ul>
+                    <li>
+                        <a th:href="@{/orca/location.do}">배송</a>
+						<a th:href="@{/orca/company/estimatepage.do}">주문</a>
+						<a th:href="@{/orca/company/cargoorderlist.do}">조회</a>
+                    </li>
+                </ul>
+        
+            </div>
+        
+        </div>
+    </header>
+
+    
+    <body>
+        <body>
+            <div>
+                <div class="my-page">
+                   <form action="estimatetotalpage.do" method="get" id="form">
+                       <div class="my-header">
+                           <div class="my-tex">
+                               <span>배송지점 선택</span>
+                               <hr>
+                           </div>
+                       </div>
+                       <div class="jcnt">
+                       
+                            <div class="joincnt">
+                                <div class="transmap">
+                                <div id="map" style="width:1000px;height:620px;"></div>
+                                </div>
+                            </div>
+                            <div class="joincnt">
+                                <div class="join_row1">
+                                <label for="adate" id="adate">도착예정일</label>
+                                <input type="text" id="adate" name="adate" th:value="${adate}" readonly/>
+                                <h5>※추후 등록된 연락처로 안내드립니다.</h5>
+                                
+                            </div>
+                               
+                            
+                            <div class="join_row1">
+                                <label>배송 지점 선택</label>
+                                <select name="location" id="location">
+                                    <option value="1">OrcaHub 서울대지점</option>
+                                    <option value="2">OrcaHub 평창지점</option>
+                                    <option value="3">OrcaHub 청주지점</option>
+                                    <option value="4">OrcaHub 대구지점</option>
+                                    <option value="5">OrcaHub 전남지점</option>
+                                </select>
+                            </div>
+                            <div>
+                                <input type="hidden" th:value="${cargoweight}" name="cargoweight"/>
+                                <input type="hidden" th:value="${cargotype}" name="cargotype"/>
+                                <input type="hidden" th:value="${locationtype}" name="locationtype"/>
+                                <input type="hidden" th:value="${period}" name="period"/>
+                                <input type="hidden" th:value="${scheduleno}" name="scheduleno"/>
+                            </div>
+                        </div>
+                        
+                       <div class="ok">
+                           <div class="btn-ok">
+                               <input type="button" value="다음" class="btn btn-primary" th:onclick="estimatetwoAction()" />
+                           </div>
+                       </div>
+                    </form>
+                </div>
+            </div>
+    </body>
+
+    <footer id="footer">
+        <div class="text_box">
+            <p>
+                <span>이메일 : adsfadf@naver.com</span><br>
+                <span>Address : 부산 남구 신선로 365 부경대학교 </span><br>
+                <span>call : 000-0000-0000</span>
+            </p>
+        </div>
+    </div>
+    </footer>
+
+    </html>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0a91293c73a6a496222351da535f7eb6"></script>
+    <script th:inline="javascript" type="text/javascript">
+        function estimatetwoAction(){
+            const form = document.getElementById('form');
+            form.submit();
+        }
+    </script>
+    <script>
+        var mapContainer = document.getElementById('map'), // 지도의 중심좌표
+        mapOption = { 
+        center: new kakao.maps.LatLng(36.53180581083406, 128.11660719940258), // 지도의 중심좌표
+        level: 12 // 지도의 확대 레벨
+    }; 
+
+    var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+    // 커스텀 오버레이에 표시할 컨텐츠 입니다
+    // 커스텀 오버레이는 아래와 같이 사용자가 자유롭게 컨텐츠를 구성하고 이벤트를 제어할 수 있기 때문에
+    // 별도의 이벤트 메소드를 제공하지 않습니다 
+    var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+    
+    // 마커를 표시할 위치와 내용을 가지고 있는 객체 배열입니다 
+    var positions = [
+        {
+            content: '<div class="wrap">' + 
+                '    <div class="info">' + 
+                '        <div class="title">' + 
+                '            OrcaHub 서울대지점' + 
+                '        </div>' + 
+                '        <div class="body">' + 
+                '            <div class="img">' +
+                '                <img src="../../JH/images/port2.jpg" width="73" height="70">' +
+                '           </div>' + 
+                '            <div class="desc">' + 
+                '                <div class="ellipsis">서울 관악구 관악로 1</div>' + 
+                '                <div class="jibun ellipsis">(우) 08826(지번) 신림동 산 56-1</div>' + 
+                '                <div class="ellipsis">운영시간</div>' + 
+                '                <div class="jibun ellipsis">주중 08:00~19:00</div>' + 
+                '                <div class="jibun ellipsis">토   09:00~14:00</div>' + 
+                '                <div class="link">전화번호</a></div>' + 
+                '                <div class="link">02-880-5114</a></div>' + 
+                '            </div>' + 
+                '        </div>' + 
+                '    </div>' +    
+                '</div>', 
+            latlng: new kakao.maps.LatLng(37.45972267518175, 126.95111498583704)
+        },
+        {
+            content: '<div class="wrap">' + 
+                '    <div class="info">' + 
+                '        <div class="title">' + 
+                '            OrcaHub 평창지점' + 
+                '        </div>' + 
+                '        <div class="body">' + 
+                '            <div class="img">' +
+                '                <img src="../../JH/images/port1.jpg" width="73" height="70">' +
+                '           </div>' + 
+                '            <div class="desc">' + 
+                '                <div class="ellipsis">강원 평창군 대화면 평창대로 1447</div>' + 
+                '                <div class="jibun ellipsis">(우) 25354(지번) 대화면 신리 2000-4</div>' + 
+                '                <div class="ellipsis">운영시간</div>' + 
+                '                <div class="jibun ellipsis">주중 09:00~18:00</div>' + 
+                '                <div class="jibun ellipsis">토   10:00~12:00</div>' + 
+                '                <div class="link">전화번호</a></div>' + 
+                '                <div class="link">033-339-5500</a></div>' +
+                '            </div>' + 
+                '        </div>' + 
+                '    </div>' +    
+                '</div>', 
+            latlng: new kakao.maps.LatLng(37.54326794601902, 128.44299142079348)
+        },
+        {
+            content: '<div class="wrap">' + 
+                '    <div class="info">' + 
+                '        <div class="title">' + 
+                '            OrcaHub 청주지점' + 
+                '        </div>' + 
+                '        <div class="body">' + 
+                '            <div class="img">' +
+                '                <img src="../../JH/images/port2.jpg" width="73" height="70">' +
+                '           </div>' + 
+                '            <div class="desc">' + 
+                '                <div class="ellipsis">충북 청주시 청원구 대성로 298</div>' + 
+                '                <div class="jibun ellipsis">(우) 28503(지번) 내덕동 36</div>' + 
+                '                <div class="ellipsis">운영시간</div>' + 
+                '                <div class="jibun ellipsis">주중 09:00~18:00</div>' + 
+                '                <div class="jibun ellipsis">토   09:00~14:00</div>' + 
+                '                <div class="link">전화번호</a></div>' + 
+                '                <div class="link">043-229-8114</a></div>' +
+                '            </div>' + 
+                '        </div>' + 
+                '    </div>' +    
+                '</div>', 
+            latlng: new kakao.maps.LatLng(36.653107842433215, 127.4951198309594)
+        },
+        {
+            content: '<div class="wrap">' + 
+                '    <div class="info">' + 
+                '        <div class="title">' + 
+                '            OrcaHub 대구지점' + 
+                '        </div>' + 
+                '        <div class="body">' + 
+                '            <div class="img">' +
+                '                <img src="../../JH/images/port1.jpg" width="73" height="70">' +
+                '           </div>' + 
+                '            <div class="desc">' + 
+                '                <div class="ellipsis">대구 북구 대학로 80</div>' + 
+                '                <div class="jibun ellipsis">(우) 41566(지번) 산격동 1370-1</div>' + 
+                '                <div class="ellipsis">운영시간</div>' + 
+                '                <div class="jibun ellipsis">주중 08:30~18:30</div>' + 
+                '                <div class="jibun ellipsis">토   09:00~14:00</div>' + 
+                '                <div class="link">전화번호</a></div>' + 
+                '                <div class="link">053-950-5114</a></div>' +
+                '            </div>' + 
+                '        </div>' + 
+                '    </div>' +    
+                '</div>',
+            latlng: new kakao.maps.LatLng(35.89064846676811, 128.61217374329362)
+        },
+        {
+            content: '<div class="wrap">' + 
+                '    <div class="info">' + 
+                '        <div class="title">' + 
+                '            OrcaHub 전남지점' + 
+                '        </div>' + 
+                '        <div class="body">' + 
+                '            <div class="img">' +
+                '                <img src="../../JH/images/port2.jpg" width="78" height="73">' +
+                '           </div>' + 
+                '            <div class="desc">' + 
+                '                <div class="ellipsis">전남 곡성군 옥과면 대학로 113</div>' + 
+                '                <div class="jibun ellipsis">(우) 57500(지번) 옥과면 옥과리 285</div>' + 
+                '                <div class="ellipsis">운영시간</div>' + 
+                '                <div class="jibun ellipsis">주중 09:30~17:30</div>' + 
+                '                <div class="jibun ellipsis">토   10:00~13:00</div>' + 
+                '                <div class="link">전화번호</a></div>' + 
+                '                <div class="link">061-360-5000</a></div>' +
+                '            </div>' + 
+                '        </div>' + 
+                '    </div>' +    
+                '</div>',
+            latlng: new kakao.maps.LatLng(35.276564075915076, 127.13199607345466)
+        }
+    ];
+
+    for (var i = 0; i < positions.length; i ++) {
+        // 마커를 생성합니다
+        var marker = new kakao.maps.Marker({
+            map: map, // 마커를 표시할 지도
+            position: positions[i].latlng // 마커의 위치
+        });
+
+        // 마커에 표시할 인포윈도우를 생성합니다 
+        var infowindow = new kakao.maps.InfoWindow({
+            content: positions[i].content // 인포윈도우에 표시할 내용
+        });
+
+        // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
+        // 이벤트 리스너로는 클로저를 만들어 등록합니다 
+        // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
+        kakao.maps.event.addListener(marker, 'click', makeOverListener(map, marker, infowindow));
+        kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+        }
+        // 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
+        function makeOverListener(map, marker, infowindow) {
+            return function() {
+                infowindow.open(map, marker);
+            };
+        }
+        // 인포윈도우를 닫는 클로저를 만드는 함수입니다 
+        function makeOutListener(infowindow) {
+            return function() {
+                infowindow.close();
+            };
+        }
+        </script>
+
+        <script>  
+            // 스크롤시 헤더 색상 변경
+            $(window).on('scroll',function(){
+                        if($(window).scrollTop()){
+                            $('header').addClass('active');
+                        }else{
+                            $('header').removeClass('active');
+                        }
+                    });
+    </script>

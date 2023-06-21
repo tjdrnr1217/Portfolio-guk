@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+</head>
+<body>
+    
+    <table>
+        <caption>주문 접수 대기</caption>
+        <thead>
+            <tr>
+                <th>화물번호</th>
+                <th>화물분류</th>
+                <th>화물무게</th>
+                <th>목적지타입</th>
+                <th>출발항</th>
+                <th>도착항</th>
+                <th>출발일</th>
+                <th>도착일</th>
+                <th>목적지</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="wobj:${wlist}">
+                <td th:text="${wobj.cargonumber}"></td>
+                <td th:text="${wobj.cargotype}"></td>
+                <td th:text="${wobj.cargoweight}"></td>
+                <td th:text="${wobj.locationtype}"></td>
+                <td th:text="${wobj.departureport}"></td>
+                <td th:text="${wobj.arrivalport}"></td>
+                <td th:text="${wobj.departuredate}"></td>
+                <td th:text="${wobj.arrivaldate}"></td>
+                <td th:text="${wobj.destinationname}"></td>
+            </tr>
+        </tbody>
+    </table>
+    <div id="pagenation">
+        <th:block th:each="num : ${#numbers.sequence(1,wpages)}">
+            <a th:href="@{/orca/company/mypage.do(menu=${param.menu}, page=${num})}" th:text="${num}"></a>
+        </th:block>
+    </div>
+</body>
+</html>
