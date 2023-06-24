@@ -64,7 +64,7 @@
 <img src="https://raw.githubusercontent.com/ldj8196/Portfolio/main/src/main/resources/static/DJ/portfolioimage/이메일인증.gif"> <br/><br/>
 - SecurityConfig를 이용하여 경로에 따른 접근 권한 설정
 - successHandler를 이용하여 하나의 로그인 창에서 로그인 시 권한에 맞는 페이지로 이동
-- AuthenticationFilter 에서부터 user DB까지 타고 들어가 DB에 있는 유저라면 UserDetails로 꺼내서 유저의 session 생성 spring security의 인메모리 세션저장소인 SecurityContextHolder 에 저장
+- AuthenticationFilter 에서부터 user DB까지 타고 들어가 DB에 있는 유저라면 UserDetails로 꺼내서 유저의 session 생성
 <br/>
 
 **2. 차량 선박 배정**
