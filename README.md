@@ -20,7 +20,7 @@
 >
 >**제작 기간**: 2023.05.15 ~ 2023.06.09
 >
->**담당 기능**: Spring Secuurity 로그인 로그아웃, 차량 선박 배정, 운행정보관리(추가,일괄수정), 주문목록조회, 전체적인 레이아웃 및 디자인
+>**담당 기능**: Spring Security 로그인 로그아웃, 차량 선박 배정, 운행정보관리(추가,일괄수정), 주문목록조회, 전체적인 레이아웃 및 디자인
 
 # :wrench: <a name="tech">기술스택</a>
 <h4>데이터베이스</h4>
@@ -60,9 +60,9 @@
 # :family: <a name="team">팀원소개</a>
 <img src="src/main/resources/static/SG/image/팀원소개.png"> <br/><br/>
 # :bookmark_tabs: <a name="function">기능구현</a>
-**1. Spring Secuurity 로그인 로그아웃**
+**1. Spring Security 로그인 로그아웃**
 <img src="https://raw.githubusercontent.com/ldj8196/Portfolio/main/src/main/resources/static/DJ/portfolioimage/이메일인증.gif"> <br/><br/>
-- SimpleMailMessage 클래스를 이용하여 메일 내용 설정
+- 
 - JavaMailSender를 이용하여 Gmail로 고객에게 인증번호 전송
 - 전송된 인증번호를 입력하여 인증확인
 <br/>
