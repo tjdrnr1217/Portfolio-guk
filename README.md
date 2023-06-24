@@ -75,8 +75,8 @@
 
 **3. 운행정보관리(추가,일괄수정)**
 <img src="https://raw.githubusercontent.com/ldj8196/Portfolio/main/src/main/resources/static/DJ/portfolioimage/주문상세목록.png"> <br/><br/>
-- RESTful 웹 서비스를 구축하여 RestController로 주문상세목록 객체를 JSON으로 데이터 전송
-- 버튼 클릭시 Modal에서 주문 상세 목록 출력
+- DB에 있는 운행정보를 내림차순하여 정렬하고 보기 쉽게 페이지네이션으로 구현
+- 일반수정과 달리 일괄수정으로 구현하여 여러 운행관리를 한꺼번에 수정
 <br/>
 
 **4. 주문목록조회**
