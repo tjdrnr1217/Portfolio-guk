@@ -63,6 +63,7 @@
 **1. Spring Security 로그인 로그아웃**
 <img src="https://raw.githubusercontent.com/ldj8196/Portfolio/main/src/main/resources/static/DJ/portfolioimage/이메일인증.gif"> <br/><br/>
 - SecurityConfig를 이용하여 경로에 따른 접근 권한 설정
+- Securityimpl에서 id와password를 확인하여 고객의 정보를 가져온다.
 - successHandler를 이용하여 하나의 로그인 창에서 로그인 시 권한에 맞는 페이지로 이동
 - AuthenticationFilter 에서부터 user DB까지 타고 들어가 DB에 있는 유저라면 UserDetails로 꺼내서 유저의 session 생성
 <br/>
@@ -89,7 +90,7 @@
 
 **4. 전체적인 레이아웃 및 디자인**
 
-/* # :bulb: <a name="result">결론</a>
+# :bulb: <a name="result">결론</a>
 웹 관련 프로젝트를 처음으로 하면서 주제 선정, 데이터베이스설계, 기능 구현, 프로젝트 배포까지의
 과정을 거치면서 전반적인 개발의 흐름을 알 수 있었고, mybatis 뿐 아니라 jpa를 사용하며 개발자는
 프로젝트 수행 중 자신이 주로 사용하는 스택뿐 아니라 여러가지 기술스택을 사용함으로써
