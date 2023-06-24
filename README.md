@@ -20,7 +20,7 @@
 >
 >**제작 기간**: 2023.05.15 ~ 2023.06.09
 >
->**담당 기능**: Spring Secuurity 로그인 로그아웃, 차량 선박 배정, 운행정보관리(추가,일괄수정), 주문목록조회
+>**담당 기능**: Spring Secuurity 로그인 로그아웃, 차량 선박 배정, 운행정보관리(추가,일괄수정), 주문목록조회, 전체적인 레이아웃 및 디자인
 
 # :wrench: <a name="tech">기술스택</a>
 <h4>데이터베이스</h4>
@@ -60,37 +60,32 @@
 # :family: <a name="team">팀원소개</a>
 <img src="src/main/resources/static/SG/image/팀원소개.png"> <br/><br/>
 # :bookmark_tabs: <a name="function">기능구현</a>
-**1. 이메일 인증**
+**1. Spring Secuurity 로그인 로그아웃**
 <img src="https://raw.githubusercontent.com/ldj8196/Portfolio/main/src/main/resources/static/DJ/portfolioimage/이메일인증.gif"> <br/><br/>
 - SimpleMailMessage 클래스를 이용하여 메일 내용 설정
 - JavaMailSender를 이용하여 Gmail로 고객에게 인증번호 전송
 - 전송된 인증번호를 입력하여 인증확인
 <br/>
 
-**2. 사업자등록번호 확인**
+**2. 차량 선박 배정**
 <img src="https://raw.githubusercontent.com/ldj8196/Portfolio/main/src/main/resources/static/DJ/portfolioimage/사업자등록번호.gif"> <br/><br/>
 - 공공데이터포럼에서 사업자등록번호 API를 통해 데이터를 받는다.
 - 받은 값(b_stt_cd)을 이용하여 유효성 검사 실시(01:유효한 사업자등록번호)
 <br/>
 
-**3. 주문목록확인**
+**3. 운행정보관리(추가,일괄수정)**
 <img src="https://raw.githubusercontent.com/ldj8196/Portfolio/main/src/main/resources/static/DJ/portfolioimage/주문상세목록.png"> <br/><br/>
 - RESTful 웹 서비스를 구축하여 RestController로 주문상세목록 객체를 JSON으로 데이터 전송
 - 버튼 클릭시 Modal에서 주문 상세 목록 출력
 <br/>
 
-**4. 결제**
+**4. 주문목록조회**
 <img src="https://raw.githubusercontent.com/ldj8196/Portfolio/main/src/main/resources/static/DJ/portfolioimage/결제.gif"> <br/><br/>
 - 아임 포트(Iamport)를 이용한 무료로 서비스되는 결제 연동API 사용
 - 각 종 PG를 이용하여 결제 후 완료시 상품 State 결제완료로 변경 후 
 <br/>
 
-**5. 배송추적**
-<img src="https://raw.githubusercontent.com/ldj8196/Portfolio/main/src/main/resources/static/DJ/portfolioimage/배송조회.gif"> <br/><br/>
-- Scheduler의 크론식을 이용하여 배의 위치를 5초마다 확인
-- Server-Sent-Events이용 선박의 위도와 경도를 Server로 부터 수신받아서 지도에 표시
-- 처음 요청은 버튼을 눌러서 Push 방식, JS setTimeOut으로 3초마다 Pull방식으로 위치 요청
-<br/>
+**4. 전체적인 레이아웃 및 디자인**
 
 /* # :bulb: <a name="result">결론</a>
 웹 관련 프로젝트를 처음으로 하면서 주제 선정, 데이터베이스설계, 기능 구현, 프로젝트 배포까지의
