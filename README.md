@@ -81,8 +81,8 @@
 
 **4. 주문목록조회**
 <img src="https://raw.githubusercontent.com/ldj8196/Portfolio/main/src/main/resources/static/DJ/portfolioimage/결제.gif"> <br/><br/>
-- 아임 포트(Iamport)를 이용한 무료로 서비스되는 결제 연동API 사용
-- 각 종 PG를 이용하여 결제 후 완료시 상품 State 결제완료로 변경 후 
+- 로그인시 세션에 저장된 아이디를 통하여 주문한 화물 조회
+- 페이지네이션과 필터 검색을 구현을 통해 고객의 편리성 제공
 <br/>
 
 **4. 전체적인 레이아웃 및 디자인**
