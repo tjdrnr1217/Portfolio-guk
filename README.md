@@ -62,7 +62,7 @@
 # :bookmark_tabs: <a name="function">기능구현</a>
 **1. Spring Security 로그인 로그아웃**
 <img src="https://raw.githubusercontent.com/ldj8196/Portfolio/main/src/main/resources/static/DJ/portfolioimage/이메일인증.gif"> <br/><br/>
-- 
+- SecurityConfig를 이용하여 경로에 따른 접근 권한 설정
 - JavaMailSender를 이용하여 Gmail로 고객에게 인증번호 전송
 - 전송된 인증번호를 입력하여 인증확인
 <br/>
