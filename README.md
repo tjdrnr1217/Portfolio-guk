@@ -89,7 +89,8 @@
 <br/>
 
 **4. 전체적인 레이아웃 및 디자인**
-
+![메인1](https://github.com/tjdrnr1217/Portfolio-guk/assets/123910866/0f941320-9c50-477d-a334-248bb724735a)<br/><br/>
+![메인2](https://github.com/tjdrnr1217/Portfolio-guk/assets/123910866/0ff89b0c-c296-43e1-a519-b2a12237ae9c)<br/><br/>
 - javascript를 이용하여 swiper 라이브러리를 사용하여 웹 페이지 내의 요소를 슬라이드 할 수 있는 기능을 추가
 - javascript를 이용하여 스크롤시 헤더 색상 변경
 - AOS를 사용하여 글씨에 모션을 설정하여 애니메이션 라이브러리 동작
