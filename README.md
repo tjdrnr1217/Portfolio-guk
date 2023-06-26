@@ -61,7 +61,7 @@
 <img src="src/main/resources/static/SG/image/팀원소개.png"> <br/><br/>
 # :bookmark_tabs: <a name="function">기능구현</a>
 **1. Spring Security 로그인 로그아웃**
-<img src="https://raw.githubusercontent.com/ldj8196/Portfolio/main/src/main/resources/static/DJ/portfolioimage/이메일인증.gif"> <br/><br/>
+<img src="https://github.com/tjdrnr1217/Portfolio-guk/blob/main/src/main/resources/static/SG/pfimages/%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0.gif?raw=true"> <br/><br/>
 - SecurityConfig를 이용하여 경로에 따른 접근 권한 설정
 - Securityimpl에서 id와password를 확인하여 고객의 정보를 가져온다.
 - successHandler를 이용하여 하나의 로그인 창에서 로그인 시 권한에 맞는 페이지로 이동
