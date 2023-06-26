@@ -69,7 +69,7 @@
 <br/>
 
 **2. 차량 선박 배정**
-<img src="https://raw.githubusercontent.com/ldj8196/Portfolio/main/src/main/resources/static/DJ/portfolioimage/사업자등록번호.gif"> <br/><br/>
+<img src="https://github.com/tjdrnr1217/Portfolio-guk/blob/main/src/main/resources/static/SG/pfimages/%EC%B0%A8%EB%9F%89_%EC%84%A0%EB%B0%95-%EB%B0%B0%EC%A0%95.gif?raw=true"> <br/><br/>
 - 
 - 가젼적서를 이용하여 주문정보를 받아 화물종류와 하역 위치에 따라 차량과 선박 배치
 - 하역장소가 하역장이면 선박 배정, 지역창고면 선박과 차량 배정이 되도록 필터링하여 구현
@@ -83,7 +83,7 @@
 <br/>
 
 **4. 주문목록조회**
-<img src="https://raw.githubusercontent.com/ldj8196/Portfolio/main/src/main/resources/static/DJ/portfolioimage/결제.gif"> <br/><br/>
+<img src="https://github.com/tjdrnr1217/Portfolio-guk/blob/main/src/main/resources/static/SG/pfimages/%ED%99%94%EB%AC%BC%EC%A1%B0%ED%9A%8C.gif?raw=true"> <br/><br/>
 - 로그인시 세션에 저장된 아이디를 통하여 주문한 화물 조회
 - 페이지네이션과 필터 검색을 구현을 통해 고객의 편리성 제공
 <br/>
